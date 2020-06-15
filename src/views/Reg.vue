@@ -2,7 +2,7 @@
   <div>
     <img @click="Goback" class="goback" src="@/assets/icons/goback.png" />
     <div class="reg">
-      <h1>商城用户注册</h1>
+      <h1>PhoneGo用户注册</h1>
       <input
         @change="fileSelected"
         type="file"

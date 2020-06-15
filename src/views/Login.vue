@@ -3,7 +3,7 @@
     <img @click="Goback" class="goback" src="@/assets/icons/goback.png" />
 
     <div class="login">
-      <h1>商城用户登录</h1>
+      <h1>PhoneGo用户登录</h1>
       <img class="logo" src="@/assets/icons/Logo.jpg" alt="" />
       <input
         v-model="LoginForm.username"
