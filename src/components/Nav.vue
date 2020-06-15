@@ -61,9 +61,9 @@ export default {
         : this.imageUrl.userpage;
     }
   },
-  watch:{
-    $route(){
-      if(this.$route.path == '/'){
+  watch: {
+    $route() {
+      if (this.$route.path == "/") {
         this.isSel = 0;
       }
     }
@@ -99,6 +99,7 @@ export default {
   height: 8%;
   /* background: red; */
   border-top: 1px solid #ccc;
+  background-color: #fff;
 }
 .nav ul {
   width: 100%;
