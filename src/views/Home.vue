@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <van-search v-model="value" placeholder="请输入搜索关键词" input-align="center" />
+    <van-search v-model="value" placeholder="请输入搜索关键词123" input-align="center" />
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
       <van-swipe-item>
         <img
