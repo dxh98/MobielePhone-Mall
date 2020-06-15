@@ -36,5 +36,6 @@ export default {
 .main {
   flex: 1;
   overflow: auto;
+  color: red;
 }
 </style>
