@@ -1,16 +1,30 @@
 <template>
   <div id="app">
     <router-view class="main"></router-view>
-    <Nav></Nav>
+    <Nav v-show="!hideNav" />
   </div>
 </template>
 
 <script>
 import Nav from "./components/Nav";
 export default {
+  data() {
+    return {
+      hideNav: false, //默认是显示的
+    };
+  },
   components: {
-    Nav
-  }
+    Nav,
+  },
+  watch: {
+    $route() {
+      if (this.$route.meta.hideNav) {
+        this.hideNav = true;
+      } else {
+        this.hideNav = false;
+      }
+    },
+  },
 };
 </script>
 

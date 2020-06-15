@@ -1,21 +1,21 @@
 <template>
   <div class="nav">
     <ul>
-      <li @click="tabpage(0,'Home')">
+      <li @click="tabpage(0, 'Home')">
         <img :src="homeicon" alt />
-        <span :class="{active:isSel == 0}">首页</span>
+        <span :class="{ active: isSel == 0 }">首页</span>
       </li>
-      <li @click="tabpage(1,'Sort')">
+      <li @click="tabpage(1, 'Sort')">
         <img :src="sorticon" alt />
-        <span :class="{active:isSel == 1}">分类</span>
+        <span :class="{ active: isSel == 1 }">分类</span>
       </li>
-      <li @click="tabpage(2,'Cart')">
+      <li @click="tabpage(2, 'Cart')">
         <img :src="carticon" alt />
-        <span :class="{active:isSel == 2}">购物车</span>
+        <span :class="{ active: isSel == 2 }">购物车</span>
       </li>
-      <li @click="tabpage(3,'User')">
+      <li @click="tabpage(3, 'User')">
         <img :src="usericon" alt />
-        <span :class="{active:isSel == 3}">我的</span>
+        <span :class="{ active: isSel == 3 }">我的</span>
       </li>
     </ul>
   </div>
@@ -59,6 +59,13 @@ export default {
       return this.isSel == 3
         ? this.imageUrl.userpage_sel
         : this.imageUrl.userpage;
+    }
+  },
+  watch:{
+    $route(){
+      if(this.$route.path == '/'){
+        this.isSel = 0;
+      }
     }
   },
   components: {},
