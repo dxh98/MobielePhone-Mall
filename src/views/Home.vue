@@ -1,6 +1,10 @@
 <template>
   <div class="home">
-    <van-search v-model="value" placeholder="请输入搜索关键词" input-align="center" />
+    <van-search
+      v-model="value"
+      placeholder="请输入搜索关键词"
+      input-align="center"
+    />
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
       <van-swipe-item>
         <img
@@ -28,17 +32,24 @@
       </van-swipe-item>
     </van-swipe>
     <div class="out" v-for="item in remai" :key="item._id">
-      <router-link :to="{name:'details',query:{
-          id:item._id
-        }}">
+      <router-link
+        :to="{
+          name: 'Products',
+          query: {
+            id: item._id,
+          },
+        }"
+      >
         <div class="topo">
-          <p>{{item.name|spliceStr}}</p>Now:
-          <span class="sp">{{item.createdAt|spliceStr}}</span>
+          <p>{{ item.name | spliceStr }}</p>
+          Now:
+          <span class="sp">{{ item.createdAt | spliceStr }}</span>
         </div>
         <img :src="item.coverImg" alt="asd" />
         <div class="qian">
           <span>￥</span>
-          <p>{{item.price}}</p>元
+          <p>{{ item.price }}</p>
+          元
         </div>
       </router-link>
     </div>
@@ -53,18 +64,18 @@ export default {
   data() {
     return {
       value: "",
-      remai: []
+      remai: [],
     };
   },
   filters: {
     spliceStr(str) {
       return str.length > 10 ? str.substr(0, 12) + "..." : str;
-    }
+    },
   },
   components: {},
   methods: {
     loadData() {
-      axios.get("http://106.14.70.106:3019/api/v1/products").then(res => {
+      axios.get("http://106.14.70.106:3019/api/v1/products").then((res) => {
         // console.log(res.data.products);
         this.remai = res.data.products;
       });
@@ -72,11 +83,11 @@ export default {
     onClickLeft() {
       this.$router.go(-1);
     },
-    onClickRight() {}
+    onClickRight() {},
   },
   created() {
     this.loadData();
-  }
+  },
 };
 </script>
 
