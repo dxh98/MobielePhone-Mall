@@ -29,6 +29,14 @@ const routes = [{
     },
   },
   {
+    path: '/sousuo',
+    name: 'sousuo',
+    component: () => import('../views/sousuo.vue'),
+    meta: {
+      hideNav: true
+    },
+  },
+  {
     path: '/user',
     name: 'User',
     component: () => import('../views/User.vue'),
