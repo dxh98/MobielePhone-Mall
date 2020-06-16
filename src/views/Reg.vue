@@ -3,21 +3,12 @@
     <img @click="Goback" class="goback" src="@/assets/icons/goback.png" />
     <div class="reg">
       <h1>PhoneGo用户注册</h1>
-      <input
-        @change="fileSelected"
-        type="file"
-        ref="file"
-        style="display:none"
-      />
+      <input @change="fileSelected" type="file" ref="file" style="display:none" />
       <img @click="selImgHandle" :src="imgSrc" class="avatars" alt />
       <p class="point">请选择头像</p>
       <input v-model="RegForm.username" type="text" placeholder="请输入账号" />
       <input v-model="RegForm.nickName" type="text" placeholder="请输入昵称" />
-      <input
-        v-model="RegForm.password"
-        type="password"
-        placeholder="请输入密码"
-      />
+      <input v-model="RegForm.password" type="password" placeholder="请输入密码" />
       <input type="password" placeholder="确认密码" />
       <button @click="Reg">注册</button>
 
@@ -33,11 +24,11 @@ export default {
   name: "",
   data() {
     return {
-       RegForm: {
+      RegForm: {
         username: "",
         password: "",
-        avatar:'',
-        nickName:''
+        avatar: "",
+        nickName: ""
       },
       imgSrc: require("@/assets/icons/avatars.png")
     };
@@ -49,10 +40,10 @@ export default {
         name: "Login"
       });
     },
-    Goback(){
+    Goback() {
       this.$router.push({
-        name:'Home'
-      })
+        name: "Home"
+      });
     },
     Reg() {
       if (this.RegForm.username == "" || this.RegForm.password == "") {
@@ -62,8 +53,8 @@ export default {
         post("/api/v1/auth/reg", {
           userName: this.RegForm.username,
           password: this.RegForm.password,
-          avatar:this.RegForm.avatar,
-          nickName:this.RegForm.nickName
+          avatar: this.RegForm.avatar,
+          nickName: this.RegForm.nickName
         }).then(res => {
           if (res.data.code == "success") {
             alert("用户注册成功");
@@ -89,7 +80,7 @@ export default {
         // console.log(res);
         this.imgSrc = `http://106.14.70.106:3019` + res.data.info;
         // console.log(this.imgSrc);
-        this.RegForm.avatar = `http://106.14.70.106:3019` + res.data.info
+        this.RegForm.avatar = `http://106.14.70.106:3019` + res.data.info;
         // console.log(this.RegForm.avatar)
       });
     }
@@ -111,16 +102,16 @@ export default {
 }
 .reg h1 {
   width: 100%;
-  height: 3rem;
+  height: 110px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.05rem;
+  font-size: 34px;
   color: #707070;
 }
 .reg img {
-  width: 4.5rem;
-  margin-top: 2rem;
+  width: 144px;
+  margin-top: 64px;
 }
 .reg .point {
   color: #ccc;
@@ -129,7 +120,7 @@ export default {
 }
 .reg input::-webkit-input-placeholder {
   color: #ccc;
-  font-size: 1.2rem;
+  font-size: 35px;
   line-height: 50px;
 }
 .reg input {
@@ -142,8 +133,8 @@ export default {
 }
 .reg button {
   width: 80%;
-  height: 3rem;
-  font-size: 1rem;
+  height: 100px;
+  font-size: 32px;
   border: 0;
   border-radius: 1.5rem;
   margin-top: 1.5rem;
@@ -151,9 +142,9 @@ export default {
   background-color: #fab3b3;
 }
 .reg a {
-  margin-top: 1.5rem;
-  padding-left: 15rem;
-  font-size: 0.8rem;
+  margin-top: 70px;
+  padding-left: 400px;
+  font-size: 27px;
   color: rgba(0, 0, 0, 0.6);
 }
 </style>
