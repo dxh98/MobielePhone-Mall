@@ -23,7 +23,7 @@ const routes = [{
     children: [{
       path: "products/:id",
       name: "Products",
-      component: () => import("../views/products.vue"),
+      component: () => import("../views/products"),
     }, ],
   },
   {
@@ -35,9 +35,17 @@ const routes = [{
     },
   },
   {
-    path: "/user",
-    name: "User",
-    component: () => import("../views/User.vue"),
+    path: '/sousuo',
+    name: 'sousuo',
+    component: () => import('../views/sousuo.vue'),
+    meta: {
+      hideNav: true
+    },
+  },
+  {
+    path: '/user',
+    name: 'User',
+    component: () => import('../views/User.vue'),
     meta: {
       needLogin: true,
     },
@@ -65,6 +73,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  // console.log(to);
   if (to.meta.needLogin) {
     //判断是否登录
     if (isLogined()) {
