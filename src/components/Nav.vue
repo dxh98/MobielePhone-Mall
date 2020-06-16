@@ -61,9 +61,9 @@ export default {
         : this.imageUrl.userpage;
     }
   },
-  watch:{
-    $route(){
-      if(this.$route.path == '/'){
+  watch: {
+    $route() {
+      if (this.$route.path == "/") {
         this.isSel = 0;
       }
     }
@@ -96,22 +96,22 @@ export default {
 <style scoped>
 .nav {
   width: 100%;
-  height: 8%;
-  /* background: red; */
-  border-top: 1px solid #ccc;
+  height: 110px;
+  overflow: hidden;
 }
 .nav ul {
   width: 100%;
-  height: 100%;
+  height: 110px;
   display: flex;
   align-items: center;
   justify-content: space-around;
+  overflow: hidden;
+  border-top: 1px solid #ccc;
 }
 .nav ul li {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-items: center; */
 }
 .nav ul li .active {
   color: #f51609;
