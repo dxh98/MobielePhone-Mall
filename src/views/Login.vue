@@ -32,7 +32,7 @@ export default {
     return {
       LoginForm: {
         username: "",
-        password: ""
+        password: "",
       }
     };
   },
@@ -54,7 +54,7 @@ export default {
       } else {
         post("/api/v1/auth/login", {
           userName: this.LoginForm.username,
-          password: this.LoginForm.password
+          password: this.LoginForm.password,
         }).then(res => {
           if (res.data.code == "success") {
             setToken(res.data.token);
@@ -65,7 +65,7 @@ export default {
               })
               .catch(() => {});
           } else {
-            alert(result.data.message);
+            alert(res.data.message);
           }
         });
       }
