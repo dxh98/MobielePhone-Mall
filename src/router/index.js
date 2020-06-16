@@ -2,7 +2,6 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import { isLogined } from "../utils/auth.js";
-// import Products from "../views/products.vue";
 
 Vue.use(VueRouter);
 
@@ -66,6 +65,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  // console.log(to);
   if (to.meta.needLogin) {
     //判断是否登录
     if (isLogined()) {

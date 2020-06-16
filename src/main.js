@@ -8,6 +8,7 @@ import "vant/lib/index.css";
 require("./assets/css/reset.css");
 
 Vue.config.productionTip = false;
+// Vue.prototype.$EventBus = new Vue();
 Vue.use(Vant);
 
 new Vue({

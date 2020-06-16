@@ -1,22 +1,12 @@
 <template>
   <div>
+    <van-popup class="msg" v-model="show" overlay>{{text}}</van-popup>
     <img @click="Goback" class="goback" src="@/assets/icons/goback.png" />
-
     <div class="login">
       <h1>PhoneGo用户登录</h1>
-      <img class="logo" src="@/assets/icons/Logo.jpg" alt="" />
-      <input
-        v-model="LoginForm.username"
-        type="text"
-        class="username"
-        placeholder="请输入账号"
-      />
-      <input
-        v-model="LoginForm.password"
-        type="password"
-        class="password"
-        placeholder="请输入密码"
-      />
+      <img class="logo" src="@/assets/icons/Logo.jpg" alt />
+      <input v-model="LoginForm.username" type="text" class="username" placeholder="请输入账号" />
+      <input v-model="LoginForm.password" type="password" class="password" placeholder="请输入密码" />
       <button @click="Login">登录</button>
       <a href="#" @click="tabpage">没有账号，我要注册</a>
     </div>
@@ -33,7 +23,9 @@ export default {
       LoginForm: {
         username: "",
         password: ""
-      }
+      },
+      show: false,
+      text: ""
     };
   },
   components: {},
@@ -43,10 +35,10 @@ export default {
         name: "Reg"
       });
     },
-    Goback(){
+    Goback() {
       this.$router.push({
-        name:'Home'
-      })
+        name: "Home"
+      });
     },
     Login() {
       if (this.LoginForm.username == "" || this.LoginForm.password == "") {
@@ -58,14 +50,15 @@ export default {
         }).then(res => {
           if (res.data.code == "success") {
             setToken(res.data.token);
-            alert('登陆成功')
+            alert("登陆成功");
             this.$router
               .push({
                 name: "Home"
               })
               .catch(() => {});
           } else {
-            alert(result.data.message);
+            this.text = "密码错误,请重新输入!!";
+            this.show = true;
           }
         });
       }
@@ -98,6 +91,7 @@ export default {
 }
 .login .logo {
   width: 7rem;
+  border-radius: 50%;
 }
 .login input {
   margin-top: 1.3rem;
@@ -129,5 +123,16 @@ export default {
   padding-left: 15rem;
   font-size: 0.8rem;
   color: rgba(0, 0, 0, 0.6);
+}
+.msg {
+  text-align: center;
+  color: red;
+  width: 10rem;
+  font-size: 16px;
+  display: flex;
+  line-height: 4rem;
+  justify-content: center;
+  height: 4rem;
+  border-radius: 10px;
 }
 </style>
