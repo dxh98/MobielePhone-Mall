@@ -93,11 +93,12 @@ export default {
   display: block;
 }
 .detail > p {
-  width: 100%;
+  width: 730px;
   padding: 20px 0 20px 20px;
   background: white;
   color: red;
   font-weight: bold;
+  overflow: hidden;
 }
 .detail > p > span {
   font-weight: bold;

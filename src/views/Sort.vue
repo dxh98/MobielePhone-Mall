@@ -1,6 +1,6 @@
 <template>
   <div class="sort">
-    <van-search v-model="value" shape="round" placeholder="请输入搜索关键词" />
+    <van-search @click="searched" v-model="value" shape="round" placeholder="请输入搜索关键词" />
     <div class="conter">
       <!-- 侧边栏 -->
       <van-sidebar v-model="activeKey" class="sd">
@@ -79,8 +79,11 @@ export default {
     },
     kind(Pid) {
       this.loading(Pid);
-    }
+    },
     // 加入购物车
+    searched() {
+      this.$router.push({ name: "sousuo" });
+    }
   },
   async created() {
     const res = await Products(50);
