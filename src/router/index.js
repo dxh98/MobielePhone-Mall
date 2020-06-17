@@ -20,7 +20,7 @@ const routes = [
     component: () => import("../views/Sort.vue"),
     children: [
       {
-        path: "products/:id",
+        path: "products/:id/:list",
         name: "Products",
         component: () => import("../views/products"),
       },
@@ -62,6 +62,14 @@ const routes = [
     path: "/reg",
     name: "Reg",
     component: () => import("../views/Reg.vue"),
+    meta: {
+      hideNav: true,
+    },
+  },
+  {
+    path: "/detail",
+    name: "Detail",
+    component: () => import("../views/Detail.vue"),
     meta: {
       hideNav: true,
     },

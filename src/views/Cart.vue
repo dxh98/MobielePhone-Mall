@@ -4,7 +4,11 @@
     <!-- 购物车商品卡片 -->
     <div class="goodscard">
       <div class="check">
-        <van-checkbox icon-size="18px" checked-color="red" v-model="checked"></van-checkbox>
+        <van-checkbox
+          icon-size="18px"
+          checked-color="red"
+          v-model="checked"
+        ></van-checkbox>
       </div>
       <div class="goods">
         <van-swipe-cell>
@@ -17,7 +21,12 @@
             thumb="https://img.yzcdn.cn/vant/cat.jpeg"
           ></van-card>
           <template #right>
-            <van-button square text="删除" type="danger" class="delete-button" />
+            <van-button
+              square
+              text="删除"
+              type="danger"
+              class="delete-button"
+            />
           </template>
           <van-button
             class="move"
@@ -30,13 +39,18 @@
             color="white"
             icon="https://ae01.alicdn.com/kf/H2efff12d538c4806a3ef9612a22146afF.jpg"
             size="mini"
-          >+</van-button>
+            >+</van-button
+          >
         </van-swipe-cell>
       </div>
     </div>
     <div class="goodscard">
       <div class="check">
-        <van-checkbox icon-size="18px" checked-color="red" v-model="checked"></van-checkbox>
+        <van-checkbox
+          icon-size="18px"
+          checked-color="red"
+          v-model="checked"
+        ></van-checkbox>
       </div>
       <div class="goods">
         <van-swipe-cell>
@@ -49,7 +63,12 @@
             thumb="https://img.yzcdn.cn/vant/cat.jpeg"
           ></van-card>
           <template #right>
-            <van-button square text="删除" type="danger" class="delete-button" />
+            <van-button
+              square
+              text="删除"
+              type="danger"
+              class="delete-button"
+            />
           </template>
           <van-button
             class="move"
@@ -62,13 +81,17 @@
             color="white"
             icon="https://ae01.alicdn.com/kf/H2efff12d538c4806a3ef9612a22146afF.jpg"
             size="mini"
-          >+</van-button>
+            >+</van-button
+          >
         </van-swipe-cell>
       </div>
     </div>
 
     <!-- 为你推荐 -->
-    <van-divider :style="{ color: '#1989fa', borderColor: '#1989fa', padding: '0 16px' }">为你推荐</van-divider>
+    <van-divider
+      :style="{ color: '#1989fa', borderColor: '#1989fa', padding: '0 16px' }"
+      >猜你喜欢</van-divider
+    >
 
     <van-grid :border="false" :column-num="2" :gutter="10">
       <van-grid-item>
@@ -114,7 +137,12 @@
     </van-grid>
 
     <!-- 商品结算 -->
-    <van-submit-bar class="settingtotal" :price="3050" button-text="去结算" @submit="onSubmit">
+    <van-submit-bar
+      class="settingtotal"
+      :price="3050"
+      button-text="去结算"
+      @submit="onSubmit"
+    >
       <van-checkbox checked-color="red" v-model="checked">全选</van-checkbox>
     </van-submit-bar>
 
