@@ -1,62 +1,109 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import {
-  isLogined
-} from "../utils/auth.js";
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Home from "../views/Home.vue";
+import { isLogined } from "../utils/auth.js";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
-const routes = [{
-    path: '/',
-    name: 'Home',
-    component: Home
+const routes = [
+  {
+    path: "/",
+    name: "Home",
+    component: Home,
   },
   {
-    path: '/sort',
-    name: 'Sort',
+    path: "/sort",
+    name: "Sort",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import('../views/Sort.vue')
+    component: () => import("../views/Sort.vue"),
   },
   {
-    path: '/cart',
-    name: 'Cart',
-    component: () => import('../views/Cart.vue'),
+    path: "/cart",
+    name: "Cart",
+    component: () => import("../views/Cart.vue"),
     meta: {
       needLogin: true,
     },
   },
   {
-    path: '/user',
-    name: 'User',
-    component: () => import('../views/User.vue'),
+    path: "/user",
+    name: "User",
+    component: () => import("../views/User.vue"),
     meta: {
       needLogin: true,
     },
   },
   {
-    path: '/login',
-    name: 'Login',
-    component: () => import('../views/Login.vue'),
+    path: "/login",
+    name: "Login",
+    component: () => import("../views/Login.vue"),
     meta: {
-      hideNav: true
-    }
+      hideNav: true,
+    },
   },
   {
-    path: '/reg',
-    name: 'Reg',
-    component: () => import('../views/Reg.vue'),
+    path: "/reg",
+    name: "Reg",
+    component: () => import("../views/Reg.vue"),
     meta: {
-      hideNav: true
-    }
-  }
-]
+      hideNav: true,
+    },
+  },
+  {
+    path: "/news",
+    name: "News",
+    component: () => import("../views/News.vue"),
+    meta: {
+      hideNav: true,
+    },
+  },
+  {
+    path: "/refund",
+    name: "Refund",
+    component: () => import("../views/Refund.vue"),
+    meta: {
+      hideNav: true,
+    },
+  },
+  {
+    path: "/about",
+    name: "About",
+    component: () => import("../views/About.vue"),
+    meta: {
+      hideNav: true,
+    },
+  },
+  {
+    path: "/feedback",
+    name: "Feedback",
+    component: () => import("../views/Feedback.vue"),
+    meta: {
+      hideNav: true,
+    },
+  },
+  {
+    path: "/help",
+    name: "Help",
+    component: () => import("../views/Help.vue"),
+    meta: {
+      hideNav: true,
+    },
+  },
+  {
+    path: "/order",
+    name: "Order",
+    component: () => import("../views/Order.vue"),
+    meta: {
+      hideNav: true,
+    },
+  },
+];
 
 const router = new VueRouter({
-  routes
-})
+  routes,
+});
 
 router.beforeEach((to, from, next) => {
   if (to.meta.needLogin) {
@@ -73,4 +120,4 @@ router.beforeEach((to, from, next) => {
   }
 });
 
-export default router
+export default router;

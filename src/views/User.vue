@@ -8,31 +8,31 @@
           ><p>{{ nickName }}</p>
           <van-icon name="edit"
         /></a>
-        <a href="#">
+        <router-link :to="{ name: 'News' }">
           <van-icon class="icon" name="chat-o" dot />
-        </a>
+        </router-link>
       </div>
 
       <div class="dingdan">
         <p>我的订单</p>
-        <p>查看全部订单></p>
+        <router-link :to="{ name: 'Order' }"><p>查看全部订单 ></p></router-link>
       </div>
 
       <div class="ddnav">
         <van-grid :column-num="5" style="justify-content: space-between;">
-          <router-link :to="{ name: 'Login' }"
+          <router-link :to="{ name: 'Order' }"
             ><van-grid-item icon="paid" text="待付款"
           /></router-link>
-          <router-link :to="{ name: 'Login' }"
+          <router-link :to="{ name: 'Order' }"
             ><van-grid-item icon="tosend" text="代发货"
           /></router-link>
-          <router-link :to="{ name: 'Login' }"
+          <router-link :to="{ name: 'Order' }"
             ><van-grid-item icon="logistics" text="待收货"
           /></router-link>
-          <router-link :to="{ name: 'Login' }"
+          <router-link :to="{ name: 'Order' }"
             ><van-grid-item icon="records" text="待评价"
           /></router-link>
-          <router-link :to="{ name: 'Home' }"
+          <router-link :to="{ name: 'Refund' }"
             ><van-grid-item icon="service" text="退款/售后"
           /></router-link>
         </van-grid>
@@ -45,18 +45,18 @@
         <p>我的收藏</p>
         <p>></p>
       </div>
-      <div class="nav3">
+      <router-link class="nav3" :to="{ name: 'Help' }">
         <p>帮助中心</p>
         <p>></p>
-      </div>
-      <div class="nav4">
+      </router-link>
+      <router-link class="nav4" :to="{ name: 'Feedback' }">
         <p>意见反馈</p>
         <p>></p>
-      </div>
-      <div class="nav5">
+      </router-link>
+      <router-link class="nav5" :to="{ name: 'About' }">
         <p>关于我们</p>
         <p>></p>
-      </div>
+      </router-link>
       <van-button @click="logOut" round type="info" size="large" class="selbtn"
         >退出登录</van-button
       >
