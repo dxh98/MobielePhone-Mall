@@ -4,19 +4,19 @@
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
       <van-swipe-item>
         <img
-          src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=821849062,3391714652&fm=26&gp=0.jpg"
+          src="https://ns-strategy.cdn.bcebos.com/ns-strategy/upload/applvyou/part-003424-1563.jpg"
           alt
         />
       </van-swipe-item>
       <van-swipe-item>
         <img
-          src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=821849062,3391714652&fm=26&gp=0.jpg"
+          src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1821824226,1606260079&fm=26&gp=0.jpg"
           alt
         />
       </van-swipe-item>
       <van-swipe-item>
         <img
-          src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=821849062,3391714652&fm=26&gp=0.jpg"
+          src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3133799396,1082947864&fm=26&gp=0.jpg"
           alt
         />
       </van-swipe-item>
@@ -58,6 +58,7 @@ export default {
     return {
       value: "",
       remai: [],
+      price: [],
       value1: 0,
       value2: "a",
       option1: [
@@ -90,11 +91,15 @@ export default {
       console.log(this.value2);
       if (this.value2 == "a") {
       } else if (this.value2 == "b") {
-        for (var i = 0; i < 8; i++) {
-          console.log(this.remai[i].price);
-        }
+        console.log(this.remai);
+        this.remai = this.remai.sort((a, b) => {
+          return a.price - b.price;
+        });
       } else {
-        console.log("GG");
+        console.log(this.remai);
+        this.remai = this.remai.sort((a, b) => {
+          return b.price - a.price;
+        });
       }
     },
     loadData() {
@@ -159,7 +164,7 @@ body {
   font-size: 2rem;
 }
 .out {
-  width: 45%;
+  width: 45.5%;
   box-shadow: 1px 11px 8px #ccc;
   margin-bottom: 2rem;
   display: flex;
@@ -181,7 +186,7 @@ img {
   padding: 0.5rem 0;
 }
 .van-swipe img {
-  height: 11rem;
+  height: 15rem;
 }
 a {
   color: black;
