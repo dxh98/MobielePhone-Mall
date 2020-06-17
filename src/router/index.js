@@ -66,6 +66,14 @@ const routes = [{
       hideNav: true,
     },
   },
+  {
+    path: '/detail',
+    name: "Detail",
+    component: () => import("../views/Detail.vue"),
+    meta: {
+      hideNav: true,
+    },
+  }
 ];
 
 const router = new VueRouter({

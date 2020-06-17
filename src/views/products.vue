@@ -10,7 +10,7 @@
       :price="item.price"
       :title="item.name"
       currency="￥"
-      :origin-price="item.price+20"
+      :origin-price="item.price + 20"
       :thumb="item.coverImg"
     >
       <template #tags>
@@ -24,12 +24,12 @@
 </template>
 <script>
 // import { eventBus } from "../router/firstChild/evevtBus";
-import { Products } from "../secvice/Goods";
+import { Products } from "../service/Goods";
 export default {
   data() {
     return {
       product: "",
-      allProducts: ""
+      allProducts: "",
       // Pid: ""
     };
   },
@@ -56,8 +56,8 @@ export default {
         }
       }
       this.product = arrP;
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

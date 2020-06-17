@@ -14,7 +14,7 @@
 <script>
 // import { get } from "../utils/request";
 import Sd from "../components/list/Sidebar";
-import { Products } from "../secvice/Goods";
+import { Products } from "../service/Goods";
 // import products from "../views/products";
 export default {
   name: "Sort",
@@ -22,11 +22,11 @@ export default {
     return {
       value: "",
       productList: "",
-      allProducts: ""
+      allProducts: "",
     };
   },
   components: {
-    Sd
+    Sd,
     // products
   },
   async created() {
@@ -50,7 +50,7 @@ export default {
       b.forEach((item, index) => {
         arr.push({
           listName: item.productCategory.descriptions,
-          List_id: item.productCategory._id
+          List_id: item.productCategory._id,
         });
       });
       arr = arr.reduce(function(item, next) {
@@ -59,8 +59,8 @@ export default {
       }, []);
       this.productList = arr;
       console.log(arr);
-    }
-  }
+    },
+  },
 };
 </script>
 
