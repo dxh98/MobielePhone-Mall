@@ -3,12 +3,21 @@
     <img @click="Goback" class="goback" src="@/assets/icons/goback.png" />
     <div class="reg">
       <h1>PhoneGo用户注册</h1>
-      <input @change="fileSelected" type="file" ref="file" style="display:none" />
+      <input
+        @change="fileSelected"
+        type="file"
+        ref="file"
+        style="display:none"
+      />
       <img @click="selImgHandle" :src="imgSrc" class="avatars" alt />
       <p class="point">请选择头像</p>
       <input v-model="RegForm.username" type="text" placeholder="请输入账号" />
       <input v-model="RegForm.nickName" type="text" placeholder="请输入昵称" />
-      <input v-model="RegForm.password" type="password" placeholder="请输入密码" />
+      <input
+        v-model="RegForm.password"
+        type="password"
+        placeholder="请输入密码"
+      />
       <input type="password" placeholder="确认密码" />
       <button @click="Reg">注册</button>
 
@@ -27,8 +36,8 @@ export default {
       RegForm: {
         username: "",
         password: "",
-        avatar: "",
-        nickName: ""
+        avatar:'',
+        nickName:'',
       },
       imgSrc: require("@/assets/icons/avatars.png")
     };

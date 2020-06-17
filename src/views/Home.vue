@@ -1,6 +1,10 @@
 <template>
   <div class="home">
-    <van-search v-model="value" placeholder="请输入搜索关键词" input-align="center" />
+    <van-search
+      v-model="value"
+      placeholder="请输入搜索关键词"
+      input-align="center"
+    />
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
       <van-swipe-item>
         <img
@@ -24,25 +28,40 @@
         <img
           src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=821849062,3391714652&fm=26&gp=0.jpg"
           alt
-        />
-      </van-swipe-item>
+        /> </van-swipe-item
+      >s
     </van-swipe>
     <van-dropdown-menu>
-      <van-dropdown-item v-model="value1" :options="option1" @change="fan1(option1.text)" />
-      <van-dropdown-item v-model="value2" :options="option2" @change="fan2(option2.text)" />
+      <van-dropdown-item
+        v-model="value1"
+        :options="option1"
+        @change="fan1(option1.text)"
+      />
+      <van-dropdown-item
+        v-model="value2"
+        :options="option2"
+        @change="fan2(option2.text)"
+      />
     </van-dropdown-menu>
     <div class="out" v-for="item in remai" :key="item._id">
-      <router-link :to="{name:'',query:{
-          id:item._id
-        }}">
+      <router-link
+        :to="{
+          name: '',
+          query: {
+            id: item._id,
+          },
+        }"
+      >
         <div class="topo">
-          <p>{{item.name|spliceStr}}</p>Now:
-          <span class="sp">{{item.createdAt|spliceStr}}</span>
+          <p>{{ item.name | spliceStr }}</p>
+          Now:
+          <span class="sp">{{ item.createdAt | spliceStr }}</span>
         </div>
         <img :src="item.coverImg" alt="asd" />
         <div class="qian">
           <span>￥</span>
-          <p>{{item.price}}</p>元
+          <p>{{ item.price }}</p>
+          元
         </div>
       </router-link>
     </div>
@@ -63,19 +82,19 @@ export default {
       value2: "a",
       option1: [
         { text: "全部商品", value: 0, index: 1 },
-        { text: "最新上架", value: 1, index: 2 }
+        { text: "最新上架", value: 1, index: 2 },
       ],
       option2: [
         { text: "默认排序", value: "a" },
         { text: "价格升序", value: "b" },
-        { text: "价格降序", value: "c" }
-      ]
+        { text: "价格降序", value: "c" },
+      ],
     };
   },
   filters: {
     spliceStr(str) {
       return str.length > 10 ? str.substr(0, 12) + "..." : str;
-    }
+    },
   },
   components: {},
   methods: {
@@ -103,7 +122,7 @@ export default {
       }
     },
     loadData() {
-      axios.get("http://106.14.70.106:3019/api/v1/products").then(res => {
+      axios.get("http://106.14.70.106:3019/api/v1/products").then((res) => {
         // console.log(res.data.products);
         this.remai = res.data.products;
       });
@@ -111,11 +130,11 @@ export default {
     onClickLeft() {
       this.$router.go(-1);
     },
-    onClickRight() {}
+    onClickRight() {},
   },
   created() {
     this.loadData();
-  }
+  },
 };
 </script>
 
