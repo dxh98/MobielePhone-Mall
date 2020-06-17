@@ -1,10 +1,10 @@
 <template>
   <div>
+    <van-popup class="msg" v-model="show" overlay>{{ text }}</van-popup>
     <img @click="Goback" class="goback" src="@/assets/icons/goback.png" />
-
     <div class="login">
       <h1>PhoneGo用户登录</h1>
-      <img class="logo" src="@/assets/icons/Logo.jpg" alt="" />
+      <img class="logo" src="@/assets/icons/Logo.png" alt />
       <input
         v-model="LoginForm.username"
         type="text"
@@ -32,8 +32,10 @@ export default {
     return {
       LoginForm: {
         username: "",
-        password: "",
-      }
+        password: ""
+      },
+      show: false,
+      text: ""
     };
   },
   components: {},
@@ -43,10 +45,10 @@ export default {
         name: "Reg"
       });
     },
-    Goback(){
+    Goback() {
       this.$router.push({
-        name:'Home'
-      })
+        name: "Home"
+      });
     },
     Login() {
       if (this.LoginForm.username == "" || this.LoginForm.password == "") {
@@ -58,14 +60,15 @@ export default {
         }).then(res => {
           if (res.data.code == "success") {
             setToken(res.data.token);
-            alert('登陆成功')
+            alert("登陆成功");
             this.$router
               .push({
                 name: "Home"
               })
               .catch(() => {});
           } else {
-            alert(res.data.message);
+            this.text = "密码错误,请重新输入!!";
+            this.show = true;
           }
         });
       }
@@ -84,20 +87,21 @@ export default {
   width: 1.3rem;
   position: fixed;
   left: 18px;
-  top: 13px;
+  top: 28px;
 }
 .login h1 {
   width: 100%;
-  height: 3rem;
+  height: 110px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.05rem;
+  font-size: 34px;
   color: #707070;
   padding-bottom: 15px;
 }
 .login .logo {
   width: 7rem;
+  border-radius: 50%;
 }
 .login input {
   margin-top: 1.3rem;
@@ -109,13 +113,13 @@ export default {
 }
 .login input::-webkit-input-placeholder {
   color: #ccc;
-  font-size: 1.2rem;
+  font-size: 35px;
   line-height: 50px;
 }
 .login button {
   width: 80%;
-  height: 3rem;
-  font-size: 1rem;
+  height: 100px;
+  font-size: 32px;
   border: 0;
   border-radius: 1.5rem;
   margin-top: 1.5rem;
@@ -125,9 +129,20 @@ export default {
   outline: none;
 }
 .login a {
-  margin-top: 1.5rem;
-  padding-left: 15rem;
-  font-size: 0.8rem;
+  margin-top: 70px;
+  padding-left: 400px;
+  font-size: 27px;
   color: rgba(0, 0, 0, 0.6);
+}
+.msg {
+  text-align: center;
+  color: red;
+  width: 10rem;
+  font-size: 16px;
+  display: flex;
+  line-height: 4rem;
+  justify-content: center;
+  height: 4rem;
+  border-radius: 10px;
 }
 </style>

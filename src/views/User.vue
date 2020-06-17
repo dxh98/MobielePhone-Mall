@@ -206,5 +206,14 @@ a {
   position: relative;
   margin: 0 10%;
   top: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #ccc;
+  padding: 1rem 0;
+  border-bottom: 0.01rem solid #999;
+  box-shadow: 0px 6px 7px #333;
+  margin: 0 1rem;
 }
 </style>

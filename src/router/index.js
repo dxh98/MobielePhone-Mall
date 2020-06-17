@@ -18,6 +18,13 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import("../views/Sort.vue"),
+    children: [
+      {
+        path: "products/:id",
+        name: "Products",
+        component: () => import("../views/products"),
+      },
+    ],
   },
   {
     path: "/cart",
@@ -25,6 +32,14 @@ const routes = [
     component: () => import("../views/Cart.vue"),
     meta: {
       needLogin: true,
+    },
+  },
+  {
+    path: "/sousuo",
+    name: "sousuo",
+    component: () => import("../views/sousuo.vue"),
+    meta: {
+      hideNav: true,
     },
   },
   {
@@ -106,6 +121,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  // console.log(to);
   if (to.meta.needLogin) {
     //判断是否登录
     if (isLogined()) {
