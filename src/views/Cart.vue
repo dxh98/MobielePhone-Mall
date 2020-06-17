@@ -5,7 +5,12 @@
 
     <div class="goodscard" v-for="item in products" :key="item._id">
       <div class="check">
-        <van-checkbox icon-size="18px" checked-color="red" v-model="checked"></van-checkbox>
+        <van-checkbox
+          @click="selectedProduct(item)"
+          icon-size="18px"
+          checked-color="red"
+          v-model="item.isSel"
+        ></van-checkbox>
       </div>
       <div class="goods">
         <van-swipe-cell>
@@ -17,20 +22,28 @@
             :thumb="item.product.coverImg"
           ></van-card>
           <template #right>
-            <van-button square text="删除" type="danger" class="delete-button" />
+            <van-button
+              @click="delCartProduct(item._id)"
+              square
+              text="删除"
+              type="danger"
+              class="delete-button"
+            />
           </template>
           <van-button
             class="move"
             color="white"
             icon="https://ae01.alicdn.com/kf/H0ebf1cf953aa415db3303be2b0460ccdT.jpg"
             size="mini"
+            @click="changeMoney(item,-1)"
           ></van-button>
           <van-button
             class="add"
             color="white"
             icon="https://ae01.alicdn.com/kf/H2efff12d538c4806a3ef9612a22146afF.jpg"
             size="mini"
-          >+</van-button>
+            @click="changeMoney(item,1)"
+          ></van-button>
         </van-swipe-cell>
       </div>
     </div>
@@ -38,13 +51,6 @@
     <!-- 为你推荐 -->
     <van-divider :style="{ color: '#1989fa', borderColor: '#1989fa', padding: '0 16px' }">猜你喜欢</van-divider>
 
-    <!-- <van-grid :border="false" :column-num="2" :gutter="10">
-      <van-grid-item v-for="item in guessLikeList[0]" :key="item._id">
-        <van-image :src="item.coverImg" />
-        <h1 class="productName">{{item.name | spliceStr}}</h1>
-        <p>￥ {{item.price}}</p>
-      </van-grid-item>
-    </van-grid>-->
     <div class="goodsList">
       <van-grid :column-num="2" :gutter="10">
         <van-grid-item
@@ -65,8 +71,8 @@
     </div>
 
     <!-- 商品结算 -->
-    <van-submit-bar class="settingtotal" :price="3050" button-text="去结算" @submit="onSubmit">
-      <van-checkbox checked-color="red" v-model="checked">全选</van-checkbox>
+    <van-submit-bar class="settingtotal" :price="totalMoney" button-text="去结算" @submit="onSubmit">
+      <van-checkbox @click="selectAll(true)" checked-color="red" v-model="checkedAll">全选</van-checkbox>
     </van-submit-bar>
 
     <!-- 没有更多了 -->
@@ -83,7 +89,8 @@ export default {
   name: "Cart",
   data() {
     return {
-      checked: "",
+      checkedAll: false,
+      totalMoney: 0,
       products: [],
       guessLikeList: []
     };
@@ -96,16 +103,70 @@ export default {
   components: {},
   methods: {
     onSubmit() {},
-    getData() {
-      getCartList().then(res => {
-        this.products = res.data;
-        // console.log(this.products);
+    changeMoney(product, way) {
+      if (way > 0) {
+        product.quantity++;
+      } else {
+        product.quantity--;
+        if (product.quantity < 1) {
+          //限制数量最少为1
+          product.quantity = 1;
+        }
+      }
+      this.calcTotalPrice(); //每次改变商品数量就调用计算总金额函数
+    },
+    // 单选功能
+    selectedProduct(item) {
+      //如果取消一个商品的选中，全选也取消
+      var itemisChecked = [];
+      this.products.forEach(function(item, index) {
+        if (item.isSel === true) {
+          itemisChecked.push(item);
+        }
       });
-      Products(50, 1).then(res => {
-        let a = Math.floor(Math.random() * 20) + 1;
-        console.log(a);
-        this.guessLikeList.push(res.data.products.slice(a, a + 10));
-        console.log(this.guessLikeList);
+      if (itemisChecked.length === this.products.length) {
+        this.checkedAll = true;
+      } else {
+        this.checkedAll = false;
+      }
+      this.calcTotalPrice();
+    },
+    // 全选功能
+    selectAll(flag) {
+      if (String(this.checkedAll) == "true") {
+        this.products.forEach((item, index) => {
+          item = Object.assign(item, { isSel: true });
+        });
+        this.calcTotalPrice();
+      } else {
+        this.products.forEach((item, index) => {
+          item = Object.assign(item, { isSel: false });
+        });
+        this.calcTotalPrice();
+      }
+    },
+
+    // 计算总价
+    calcTotalPrice() {
+      this.totalMoney = 0; //每次遍历商品之前对总金额进行清零
+      this.products.forEach((item, index) => {
+        //遍历商品，如果选中就进行加个计算，然后累加
+        if (item.isSel) {
+          this.totalMoney += item.product.price * item.quantity * 100;
+        }
+      });
+    },
+    // 删除购物车商品
+    delCartProduct(id) {
+      console.log("删除此商品", id);
+      delCartOne(id).then(res => {
+        console.log(res);
+      });
+      getCartList().then(res => {
+        this.products = [];
+        res.data.map((item, index) => {
+          this.products.push(Object.assign(item, { isSel: false }));
+        });
       });
     }
     // delOne() {
@@ -114,10 +175,23 @@ export default {
     //   });
     // }
   },
-  created() {
-    this.getData();
+  async created() {
+    const res = await getCartList();
+    // this.products = res.data;
+    res.data.map((item, index) => {
+      this.products.push(Object.assign(item, { isSel: false }));
+    });
+    // console.log(this.products);
+    // 计算总价
+    this.calcTotalPrice();
+    // 随机获取为你推荐列表
+    Products(50, 1).then(res => {
+      let a = Math.floor(Math.random() * 20) + 1;
+      this.guessLikeList.push(res.data.products.slice(a, a + 10));
+    });
     // this.delOne();
-  }
+  },
+  mounted() {}
 };
 </script>
 

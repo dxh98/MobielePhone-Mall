@@ -61,7 +61,6 @@ export default {
     },
     addcart() {
       addCart(this.$route.query.id).then(res => {
-        console.log(res);
         alert(res.data.message);
       });
     },
