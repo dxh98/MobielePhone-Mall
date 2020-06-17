@@ -40,7 +40,12 @@ export default {
     // Sd,
     products
   },
-
+  async created() {
+    const res = await Products(88);
+    this.allProducts = res.data.products;
+    this.sort();
+    this.loading();
+  },
   methods: {
     sort() {
       //获取所有商品

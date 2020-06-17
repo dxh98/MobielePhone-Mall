@@ -122,6 +122,30 @@ const routes = [
       hideNav: true,
     },
   },
+  {
+    path: "/address",
+    name: "Address",
+    component: () => import("../views/Address.vue"),
+    meta: {
+      hideNav: true,
+    },
+  },
+  {
+    path: "/newadd",
+    name: "Newadd",
+    component: () => import("../views/Newadd.vue"),
+    meta: {
+      hideNav: true,
+    },
+  },
+  {
+    path: "/collect",
+    name: "Collect",
+    component: () => import("../views/Collect.vue"),
+    meta: {
+      hideNav: true,
+    },
+  },
 ];
 
 const router = new VueRouter({
