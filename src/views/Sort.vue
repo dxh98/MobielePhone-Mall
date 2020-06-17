@@ -1,19 +1,21 @@
 <template>
   <div class="sort">
-    <van-search v-model="value" shape="round" placeholder="请输入搜索关键词" />
+    <van-sticky>
+      <van-search v-model="value" shape="round" disabled placeholder="请输入搜索关键词" @click="search()" />
+    </van-sticky>
     <div class="conter">
-      <!-- <Sd :product="productList" class="sd"></Sd>
-      -->
       <!-- 侧边栏 -->
-      <van-sidebar v-model="activeKey" class="sd">
-        <van-sidebar-item
-          v-for="item in productList"
-          :key="item.List_id"
-          :title="item.listName"
-          :to="{name:'Products',params:{id:item.List_id,list:item.listName}}"
-          @click="kind(item.List_id)"
-        />
-      </van-sidebar>
+      <div class="left">
+        <van-sidebar v-model="activeKey" class="sd">
+          <van-sidebar-item
+            v-for="item in productList"
+            :key="item.List_id"
+            :title="item.listName"
+            :to="{name:'Products',params:{id:item.List_id,list:item.listName}}"
+            @click="kind(item.List_id)"
+          />
+        </van-sidebar>
+      </div>
       <!-- 右边内容 -->
       <div class="list">
         <products :Pd="pd"></products>
@@ -41,16 +43,22 @@ export default {
     };
   },
   components: {
-    // Sd,
+
     products
   },
   async created() {
-    const res = await Products();
+    const res = await Products(99, 1);
     this.allProducts = res.data.products;
     this.sort();
     this.loading();
   },
   methods: {
+    // 搜
+    search() {
+      this.$router.push({
+        name: "sousuo"
+      });
+    },
     sort() {
       //获取所有商品
       // 然后遍历属性 形成新的商品列表对象 保存分类id
@@ -70,8 +78,8 @@ export default {
         return item;
       }, []);
       this.productList = arr;
-      console.log(arr);
     },
+    // 加载类商品
     loading(Pid = this.productListId) {
       let arrP = [];
       // console.log(Pid);
@@ -88,33 +96,6 @@ export default {
       this.loading(Pid);
     }
     // 加入购物车
-  },
-  watch: {
-    // $route() {
-    //   console.log($route);
-    //   Pid = this.$route.params.id;
-    //   let arrP = [];
-    //   console.log(Pid);
-    //   const arr = this.allProducts;
-    //   for (let i = 0; i < arr.length; i++) {
-    //     if (arr[i].productCategory._id == Pid) {
-    //       arrP.push(arr[i]);
-    //     }
-    //   }
-    //   this.pd = arrP;
-    // }
-    // loading() {
-    //   const Pid = this.$route.params.id;
-    //   let arrP = [];
-    //   console.log(Pid);
-    //   const arr = this.allProducts;
-    //   for (let i = 0; i < arr.length; i++) {
-    //     if (arr[i].productCategory._id == Pid) {
-    //       arrP.push(arr[i]);
-    //     }
-    //   }
-    //   this.pd = arrP;
-    // }
   }
 };
 </script>
@@ -123,19 +104,22 @@ export default {
 .sort {
   background-color: rgb(246, 246, 246);
 }
-.conter {
-  display: flex;
-  flex-direction: row;
-  margin-top: 0.5rem;
-  /* width: 100%;
-  height: 100%; */
-}
 
-.list {
-  width: 100%;
-  overflow: auto;
+.conter {
+  flex: 1;
+  display: flex;
+  margin-top: 10px;
+  /* padding-top: 250px; */
 }
-.sd {
-  width: 250px;
+.left {
+  flex: 1;
 }
+.left .sd {
+  width: 220px;
+  height: 100%;
+  overflow-y: auto;
+}
+/* .list {
+  overflow-y: auto;
+} */
 </style>
