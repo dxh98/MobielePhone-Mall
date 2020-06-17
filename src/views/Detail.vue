@@ -2,80 +2,70 @@
   <div class="detail">
     <!-- 返回图标 -->
     <div @click="goBack" class="goback">
-      <img src="@/assets/icons/back.png" alt="" />
+      <img src="@/assets/icons/back.png" alt />
     </div>
     <!-- 主图 -->
-    <img :src="this.product.coverImg" alt="" />
+    <img :src="this.product.coverImg" alt />
     <!-- 价格 -->
     <p>
-      ￥<span> {{ this.product.price }} </span>.00
+      ￥
+      <span>{{ this.product.price }}</span>.00
     </p>
     <!-- 图标和商品名 -->
     <h1>
       <img
         src="https://img12.360buyimg.com/img/s68x28_jfs/t1/124423/31/2193/1569/5ec39d2cE97103d62/fa0f0561379c2462.png"
-        alt=""
+        alt
       />
       <img
         src="https://img11.360buyimg.com/jdphoto/s48x28_jfs/t1/69566/30/15738/1062/5dd3abb6Ea8fd7aa3/57c6a72435905414.png"
-        alt=""
+        alt
       />
       {{ this.product.name }}
     </h1>
     <!-- 放心购 -->
     <h1>
-      <img src="@/assets/icons/Buywithconfidence.png" alt="" />
+      <img src="@/assets/icons/Buywithconfidence.png" alt />
       <span>免举证退换货，原厂维修</span>
     </h1>
     <!-- 底部操作栏 -->
     <van-goods-action class="operationBar">
       <van-goods-action-icon icon="chat-o" text="客服" @click="onClickIcon" />
       <van-goods-action-icon icon="cart-o" text="购物车" @click="onClickIcon" />
-      <van-goods-action-button
-        color="#be99ff"
-        type="warning"
-        text="加入购物车"
-        @click="onClickButton"
-      />
-      <van-goods-action-button
-        color="#7232dd"
-        type="danger"
-        text="立即购买"
-        @click="onClickButton"
-      />
+      <van-goods-action-button color="#be99ff" type="warning" text="加入购物车" @click="onClickButton" />
+      <van-goods-action-button color="#7232dd" type="danger" text="立即购买" @click="onClickButton" />
     </van-goods-action>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-import { Toast } from 'vant';
+import { Toast } from "vant";
 import { GetOne } from "@/service/Goods.js";
 export default {
-    name: "",
-    data() {
-        return {
-          product:{}
-        }
+  name: "",
+  data() {
+    return {
+      product: {}
+    };
+  },
+  components: {},
+  methods: {
+    onClickIcon() {
+      Toast("点击图标");
     },
-    components: {},
-    methods: {
-      onClickIcon() {
-        Toast('点击图标');
+    onClickButton() {
+      Toast("点击按钮");
     },
-      onClickButton() {
-        Toast('点击按钮');
-    },
-    goBack(){
-      this.$router.go(-1)
+    goBack() {
+      this.$router.go(-1);
     }
-    },
-    async created(){
-      // console.log(this.$route.params.id)
-      const res = await GetOne(this.$route.query.id)
-        this.product = res.data
-    }
-
-}
+  },
+  async created() {
+    // console.log(this.$route.params.id)
+    const res = await GetOne(this.$route.query.id);
+    this.product = res.data;
+  }
+};
 </script>
 
 <style scoped>
