@@ -2,31 +2,22 @@
   <div class="cart">
     <h1>购物车</h1>
     <!-- 购物车商品卡片 -->
-    <div class="goodscard">
+
+    <div class="goodscard" v-for="item in products" :key="item._id">
       <div class="check">
-        <van-checkbox
-          icon-size="18px"
-          checked-color="red"
-          v-model="checked"
-        ></van-checkbox>
+        <van-checkbox icon-size="18px" checked-color="red" v-model="checked"></van-checkbox>
       </div>
       <div class="goods">
         <van-swipe-cell>
           <van-card
-            num="10"
-            price="2.00"
-            desc="描述信息"
-            title="商品标题"
+            :num="item.quantity"
+            :price="item.product.price"
+            :title="item.product.name"
             class="goods-card"
-            thumb="https://img.yzcdn.cn/vant/cat.jpeg"
+            :thumb="item.product.coverImg"
           ></van-card>
           <template #right>
-            <van-button
-              square
-              text="删除"
-              type="danger"
-              class="delete-button"
-            />
+            <van-button square text="删除" type="danger" class="delete-button" />
           </template>
           <van-button
             class="move"
@@ -39,110 +30,42 @@
             color="white"
             icon="https://ae01.alicdn.com/kf/H2efff12d538c4806a3ef9612a22146afF.jpg"
             size="mini"
-            >+</van-button
-          >
-        </van-swipe-cell>
-      </div>
-    </div>
-    <div class="goodscard">
-      <div class="check">
-        <van-checkbox
-          icon-size="18px"
-          checked-color="red"
-          v-model="checked"
-        ></van-checkbox>
-      </div>
-      <div class="goods">
-        <van-swipe-cell>
-          <van-card
-            num="10"
-            price="2.00"
-            desc="描述信息"
-            title="商品标题"
-            class="goods-card"
-            thumb="https://img.yzcdn.cn/vant/cat.jpeg"
-          ></van-card>
-          <template #right>
-            <van-button
-              square
-              text="删除"
-              type="danger"
-              class="delete-button"
-            />
-          </template>
-          <van-button
-            class="move"
-            color="white"
-            icon="https://ae01.alicdn.com/kf/H0ebf1cf953aa415db3303be2b0460ccdT.jpg"
-            size="mini"
-          ></van-button>
-          <van-button
-            class="add"
-            color="white"
-            icon="https://ae01.alicdn.com/kf/H2efff12d538c4806a3ef9612a22146afF.jpg"
-            size="mini"
-            >+</van-button
-          >
+          >+</van-button>
         </van-swipe-cell>
       </div>
     </div>
 
     <!-- 为你推荐 -->
-    <van-divider
-      :style="{ color: '#1989fa', borderColor: '#1989fa', padding: '0 16px' }"
-      >猜你喜欢</van-divider
-    >
+    <van-divider :style="{ color: '#1989fa', borderColor: '#1989fa', padding: '0 16px' }">猜你喜欢</van-divider>
 
-    <van-grid :border="false" :column-num="2" :gutter="10">
-      <van-grid-item>
-        <van-image src="https://img.yzcdn.cn/vant/apple-1.jpg" />
-        <h1>商品名</h1>
-        <p>￥ 1000.00</p>
+    <!-- <van-grid :border="false" :column-num="2" :gutter="10">
+      <van-grid-item v-for="item in guessLikeList[0]" :key="item._id">
+        <van-image :src="item.coverImg" />
+        <h1 class="productName">{{item.name | spliceStr}}</h1>
+        <p>￥ {{item.price}}</p>
       </van-grid-item>
-      <van-grid-item>
-        <van-image src="https://img.yzcdn.cn/vant/apple-2.jpg" />
-        <h1>商品名</h1>
-        <p>￥ 1000.00</p>
-      </van-grid-item>
-      <van-grid-item>
-        <van-image src="https://img.yzcdn.cn/vant/apple-3.jpg" />
-        <h1>商品名</h1>
-        <p>￥ 1000.00</p>
-      </van-grid-item>
-      <van-grid-item>
-        <van-image src="https://img.yzcdn.cn/vant/apple-1.jpg" />
-        <h1>商品名</h1>
-        <p>￥ 1000.00</p>
-      </van-grid-item>
-      <van-grid-item>
-        <van-image src="https://img.yzcdn.cn/vant/apple-2.jpg" />
-        <h1>商品名</h1>
-        <p>￥ 1000.00</p>
-      </van-grid-item>
-      <van-grid-item>
-        <van-image src="https://img.yzcdn.cn/vant/apple-3.jpg" />
-        <h1>商品名</h1>
-        <p>￥ 1000.00</p>
-      </van-grid-item>
-      <van-grid-item>
-        <van-image src="https://img.yzcdn.cn/vant/apple-1.jpg" />
-        <h1>商品名</h1>
-        <p>￥ 1000.00</p>
-      </van-grid-item>
-      <van-grid-item>
-        <van-image src="https://img.yzcdn.cn/vant/apple-2.jpg" />
-        <h1>商品名</h1>
-        <p>￥ 1000.00</p>
-      </van-grid-item>
-    </van-grid>
+    </van-grid>-->
+    <div class="goodsList">
+      <van-grid :column-num="2" :gutter="10">
+        <van-grid-item
+          :to="{
+            name: 'Detail',
+            query: {
+              id: item._id,
+            },
+          }"
+          v-for="item in guessLikeList[0]"
+          :key="item._id"
+        >
+          <img :src="item.coverImg" />
+          <p>{{ item.name | spliceStr }}</p>
+          <h1>￥ {{ item.price }}</h1>
+        </van-grid-item>
+      </van-grid>
+    </div>
 
     <!-- 商品结算 -->
-    <van-submit-bar
-      class="settingtotal"
-      :price="3050"
-      button-text="去结算"
-      @submit="onSubmit"
-    >
+    <van-submit-bar class="settingtotal" :price="3050" button-text="去结算" @submit="onSubmit">
       <van-checkbox checked-color="red" v-model="checked">全选</van-checkbox>
     </van-submit-bar>
 
@@ -155,16 +78,45 @@
 </template>
 
 <script type="text/ecmascript-6">
+import { getCartList, delCartOne, Products } from "@/service/Goods.js";
 export default {
   name: "Cart",
   data() {
     return {
-      checked: ""
+      checked: "",
+      products: [],
+      guessLikeList: []
     };
+  },
+  filters: {
+    spliceStr(str) {
+      return str.length > 26 ? str.substr(0, 28) + "..." : str;
+    }
   },
   components: {},
   methods: {
-    onSubmit() {}
+    onSubmit() {},
+    getData() {
+      getCartList().then(res => {
+        this.products = res.data;
+        // console.log(this.products);
+      });
+      Products(50, 1).then(res => {
+        let a = Math.floor(Math.random() * 20) + 1;
+        console.log(a);
+        this.guessLikeList.push(res.data.products.slice(a, a + 10));
+        console.log(this.guessLikeList);
+      });
+    }
+    // delOne() {
+    //   delCartOne().then(res => {
+    //     console.log(res);
+    //   });
+    // }
+  },
+  created() {
+    this.getData();
+    // this.delOne();
   }
 };
 </script>
@@ -233,5 +185,17 @@ export default {
 .bottomImage img {
   width: 100%;
   margin-top: 30px;
+}
+.goodsList img {
+  width: 200px;
+}
+.goodsList p {
+  font-size: 30px;
+  margin-top: 20px;
+}
+.goodsList h1 {
+  margin-top: 25px;
+  font-size: 30px;
+  color: red;
 }
 </style>
