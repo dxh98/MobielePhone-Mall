@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import products from "./views/products";
 import Nav from "./components/Nav";
 export default {
   data() {
@@ -14,7 +15,8 @@ export default {
     };
   },
   components: {
-    Nav
+    Nav,
+    products
   },
   watch: {
     $route() {

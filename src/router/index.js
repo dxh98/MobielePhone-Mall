@@ -23,8 +23,17 @@ const routes = [
         path: "products/:id/:list",
         name: "Products",
         component: () => import("../views/products"),
+        children: [],
       },
     ],
+  },
+  {
+    path: "/onkind",
+    name: "Onkind",
+    component: () => import("../views/SortList/oneKind"),
+    meta: {
+      hideNav: true,
+    },
   },
   {
     path: "/cart",
