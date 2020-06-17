@@ -11,7 +11,7 @@
       :price="item.price"
       :title="item.name"
       currency="￥"
-      :origin-price="item.price+20"
+      :origin-price="item.price + 20"
       :thumb="item.coverImg"
     >
       <!-- <template #tags>

@@ -1,16 +1,17 @@
-import Vue from 'vue'
-import Vant from 'vant'
-import App from './App.vue'
-import router from './router'
-import store from './store'
+import Vue from "vue";
+import Vant from "vant";
+import App from "./App.vue";
+import router from "./router";
+import store from "./store";
 
-import 'vant/lib/index.css'
-require('./assets/css/reset.css')
+import "vant/lib/index.css";
+require("./assets/css/reset.css");
 
-Vue.use(Vant)
+Vue.use(Vant);
 
+require("./assets/css/reset.css");
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 new Vue({
   router,

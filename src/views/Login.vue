@@ -1,12 +1,22 @@
 <template>
   <div>
-    <van-popup class="msg" v-model="show" overlay>{{text}}</van-popup>
+    <van-popup class="msg" v-model="show" overlay>{{ text }}</van-popup>
     <img @click="Goback" class="goback" src="@/assets/icons/goback.png" />
     <div class="login">
       <h1>PhoneGo用户登录</h1>
       <img class="logo" src="@/assets/icons/Logo.png" alt />
-      <input v-model="LoginForm.username" type="text" class="username" placeholder="请输入账号" />
-      <input v-model="LoginForm.password" type="password" class="password" placeholder="请输入密码" />
+      <input
+        v-model="LoginForm.username"
+        type="text"
+        class="username"
+        placeholder="请输入账号"
+      />
+      <input
+        v-model="LoginForm.password"
+        type="password"
+        class="password"
+        placeholder="请输入密码"
+      />
       <button @click="Login">登录</button>
       <a href="#" @click="tabpage">没有账号，我要注册</a>
     </div>
@@ -46,7 +56,7 @@ export default {
       } else {
         post("/api/v1/auth/login", {
           userName: this.LoginForm.username,
-          password: this.LoginForm.password
+          password: this.LoginForm.password,
         }).then(res => {
           if (res.data.code == "success") {
             setToken(res.data.token);

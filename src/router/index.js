@@ -4,7 +4,6 @@ import Home from "../views/Home.vue";
 import {
   isLogined
 } from "../utils/auth.js";
-// import Products from "../views/products.vue";
 
 Vue.use(VueRouter);
 
@@ -35,17 +34,17 @@ const routes = [{
     },
   },
   {
-    path: '/sousuo',
-    name: 'sousuo',
-    component: () => import('../views/sousuo.vue'),
+    path: "/sousuo",
+    name: "sousuo",
+    component: () => import("../views/sousuo.vue"),
     meta: {
-      hideNav: true
+      hideNav: true,
     },
   },
   {
-    path: '/user',
-    name: 'User',
-    component: () => import('../views/User.vue'),
+    path: "/user",
+    name: "User",
+    component: () => import("../views/User.vue"),
     meta: {
       needLogin: true,
     },
@@ -62,6 +61,62 @@ const routes = [{
     path: "/reg",
     name: "Reg",
     component: () => import("../views/Reg.vue"),
+    meta: {
+      hideNav: true,
+    },
+  },
+  {
+    path: '/detail',
+    name: "Detail",
+    component: () => import("../views/Detail.vue"),
+    meta: {
+      hideNav: true,
+    },
+  },
+  {
+    path: "/news",
+    name: "News",
+    component: () => import("../views/News.vue"),
+    meta: {
+      hideNav: true,
+    },
+  },
+  {
+    path: "/refund",
+    name: "Refund",
+    component: () => import("../views/Refund.vue"),
+    meta: {
+      hideNav: true,
+    },
+  },
+  {
+    path: "/about",
+    name: "About",
+    component: () => import("../views/About.vue"),
+    meta: {
+      hideNav: true,
+    },
+  },
+  {
+    path: "/feedback",
+    name: "Feedback",
+    component: () => import("../views/Feedback.vue"),
+    meta: {
+      hideNav: true,
+    },
+  },
+  {
+    path: "/help",
+    name: "Help",
+    component: () => import("../views/Help.vue"),
+    meta: {
+      hideNav: true,
+    },
+  },
+  {
+    path: "/order",
+    name: "Order",
+    component: () => import("../views/Order.vue"),
     meta: {
       hideNav: true,
     },
