@@ -1,7 +1,8 @@
 <template>
   <div class="pr">
     <div class="top">
-      <p>{{Pd[0].productCategory.descriptions? Pd[0].productCategory.descriptions:' '}}</p>
+      <!-- {Pd[0].productCategory.descriptions? Pd[0].productCategory.descriptions:' ' -->
+      <p>{{this.$route.params.list}}</p>
       <span @click="btn">查看更多>></span>
     </div>
     <van-card
@@ -32,8 +33,8 @@
 </template>
 <script>
 // import { eventBus } from "../router/firstChild/evevtBus";
-import { addProduct } from "../secvice/Cart";
-import { Products } from "../secvice/Goods";
+import { addProduct } from "../service/Cart";
+import { Products } from "../service/Goods";
 export default {
   data() {
     return {

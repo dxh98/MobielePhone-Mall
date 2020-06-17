@@ -1,13 +1,12 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import {
-  isLogined
-} from "../utils/auth.js";
+import { isLogined } from "../utils/auth.js";
 
 Vue.use(VueRouter);
 
-const routes = [{
+const routes = [
+  {
     path: "/",
     name: "Home",
     component: Home,
@@ -19,11 +18,13 @@ const routes = [{
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import("../views/Sort.vue"),
-    children: [{
-      path: "products/:id",
-      name: "Products",
-      component: () => import("../views/products"),
-    }, ],
+    children: [
+      {
+        path: "products/:id/:list",
+        name: "Products",
+        component: () => import("../views/products"),
+      },
+    ],
   },
   {
     path: "/cart",
@@ -66,7 +67,7 @@ const routes = [{
     },
   },
   {
-    path: '/detail',
+    path: "/detail",
     name: "Detail",
     component: () => import("../views/Detail.vue"),
     meta: {

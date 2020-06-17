@@ -10,7 +10,7 @@
           v-for="item in productList"
           :key="item.List_id"
           :title="item.listName"
-          :to="{name:'Products',params:{id:item.List_id}}"
+          :to="{name:'Products',params:{id:item.List_id,list:item.listName}}"
           @click="kind(item.List_id)"
         />
       </van-sidebar>
@@ -25,9 +25,9 @@
 <script>
 // import { get } from "../utils/request";
 // import Sd from "../components/list/Sidebar";
-import { Products } from "../secvice/Goods";
+import { Products } from "../service/Goods";
 import products from "../views/products";
-import { addProduct } from "../secvice/Cart";
+import { addProduct } from "../service/Cart";
 export default {
   name: "Sort",
   data() {
