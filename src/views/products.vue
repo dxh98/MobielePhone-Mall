@@ -16,9 +16,6 @@
       :thumb="item.coverImg"
       @click-thumb="detail(item._id)"
     >
-      <!-- <template #tags>
-        <van-tag plain type="danger">标签</van-tag>
-      </template>-->
       <template #bottom>
         <div class="lookIcon">
           <div class="looks">
@@ -79,7 +76,6 @@ export default {
         console.log(res);
         Toast.success("加入购物车成功");
       });
-      // console.log(res);
     }
   },
   computed: {},

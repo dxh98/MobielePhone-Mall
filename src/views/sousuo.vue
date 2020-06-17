@@ -1,102 +1,67 @@
 <template>
-  <div>
-    <div class="goback">
-      <!-- <el-button type="danger" @click="goback">返回</el-button> -->
-    </div>
-
-    <div>
-      <van-search v-model="search" placeholder="请输入搜索关键词" />
-      <van-button type="danger" @click="Search">搜索</van-button>
-    </div>
-    <!-- 搜索后的 -->
-    <div v-if="searchData.length>0">
-      <ul v-for="(item, index) in searchData" :key="index">
-        <li>
-          <span>{{item.contact_name}}</span>
-          <span>{{item.address}}</span>
-          <span>{{item.phone}}</span>
-        </li>
-      </ul>
-    </div>
-    <!-- 搜索前的 -->
-    <div v-else>
-      <ul v-for="(item, index) in list" :key="index">
-        <li>
-          <span>{{item.contact_name}}</span>
-          <span>{{item.address}}</span>
-          <span>{{item.phone}}</span>
-        </li>
-      </ul>
-    </div>
+  <div class>
+    <van-nav-bar title="搜索" left-text="返回" left-arrow @click-left="onClickLeft" />
+    <van-search placeholder="请输入搜索关键词" input-align="center" v-model="str" v-on:input="dis" />
+    <ul v-for="(item) in searchResult" :key="item.index">
+      <router-link :to="{name:'Detail',query:{id:item._id}}">
+        <li :style="styleObj1">{{item.name|spliceStr}}</li>
+      </router-link>
+    </ul>
   </div>
 </template>
 <script>
-import { mapGetters } from "vuex";
-import { get } from "../utils/ajax";
-
-// import api from "../../api/axiosConfig.js";
+import axios from "axios";
 export default {
-  data() {
-    return {
-      search: "",
-      // 原本展示数据
-      list: [],
-      // 搜索后的展示数据
-      searchData: []
-    };
-  },
-
-  components: {},
-
-  computed: {
-    ...mapGetters(["getAddressList", "getLoginUser"])
-  },
-
-  created() {
-    // 获取的接口数据
-    this.getList();
-  },
-
-  mounted() {},
-
-  methods: {
-    // goback() {
-    //   this.$router.go(-1);
-    // },
-
-    // 获取接口中数据的方法
-    getList() {
-      // let params = {
-      //   id: this.getLoginUser.id,
-      //   token_sc: this.getLoginUser.token_sc
-      // };
-      // api.AddressList(params).then(res => {
-      //   // list 就是原始数据
-      //   this.list = res.data;
-      // });
-    },
-
-    Search() {
-      // search 是 v-model="search" 的 search
-      var search = this.search;
-      if (search) {
-        this.searchData = this.list.filter(function(product) {
-          // 每一项数据
-          // console.log(product)
-          return Object.keys(product).some(function(key) {
-            // 每一项数据的参数名
-            // console.log(key)
-            return (
-              String(product[key])
-                // toLowerCase() 方法用于把字符串转换为小写。
-                .toLowerCase()
-                // indexOf() 方法可返回某个指定的字符串值在字符串中首次出现的位置。
-                .indexOf(search) > -1
-            );
-          });
-        });
-      }
+  data: () => ({
+    // 用户输入的筛选条件
+    str: "",
+    list: [],
+    searchResult: [],
+    styleObj1: { display: "none" }
+  }),
+  filters: {
+    spliceStr(str) {
+      return str.length > 31 ? str.substr(0, 30) + "..." : str;
     }
+  },
+  methods: {
+    onClickLeft() {
+      this.$router.go(-1);
+    },
+    dis() {
+      console.log(this.str);
+      // console.log(this.str.length);
+      if (this.str == "") {
+        this.styleObj1.display = "none";
+      } else {
+        this.styleObj1.display = "block";
+      }
+      this.searchResult = [];
+      for (let i = 0; i < this.list.length; i++) {
+        if (this.list[i].name.search(this.str) != -1) {
+          this.searchResult.push(this.list[i]);
+        }
+      }
+      console.log(this.searchResult);
+    }
+  },
+  created() {
+    axios.get("http://106.14.70.106:3019/api/v1/products").then(res => {
+      // console.log(res.data.products);
+      this.list = res.data.products;
+    });
   }
 };
 </script>
+<style scoped>
+ul li {
+  margin-top: 2rem;
+  text-align: center;
+}
+a {
+  color: black;
+}
+li {
+  /* display: none; */
+}
+</style>

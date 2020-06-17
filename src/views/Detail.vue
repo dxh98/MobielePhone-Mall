@@ -32,7 +32,9 @@
     <van-goods-action class="operationBar">
       <van-goods-action-icon icon="chat-o" text="客服" @click="onClickIcon" />
       <van-goods-action-icon icon="cart-o" text="购物车" @click="onClickIcon" />
-      <van-goods-action-button color="#be99ff" type="warning" text="加入购物车" @click="onClickButton" />
+      <van-goods-action-button color="#be99ff" type="warning" text="加入购物车" @click="addcart" />
+      <!-- <van-popup position="bottom" :style="{ height: '30%' }" v-model="show">
+      </van-popup>-->
       <van-goods-action-button color="#7232dd" type="danger" text="立即购买" @click="onClickButton" />
     </van-goods-action>
   </div>
@@ -40,12 +42,13 @@
 
 <script type="text/ecmascript-6">
 import { Toast } from "vant";
-import { GetOne } from "@/service/Goods.js";
+import { GetOne, addCart } from "@/service/Goods.js";
 export default {
   name: "",
   data() {
     return {
-      product: {}
+      product: {},
+      show: false
     };
   },
   components: {},
@@ -56,12 +59,16 @@ export default {
     onClickButton() {
       Toast("点击按钮");
     },
+    addcart() {
+      addCart(this.$route.query.id).then(res => {
+        alert(res.data.message);
+      });
+    },
     goBack() {
       this.$router.go(-1);
     }
   },
   async created() {
-    // console.log(this.$route.params.id)
     const res = await GetOne(this.$route.query.id);
     this.product = res.data;
   }
@@ -72,9 +79,6 @@ export default {
 .detail {
   background: #e6e6e6;
 }
-/* .goback > img {
-  width: 40px;
-} */
 .detail .goback {
   width: 50px;
   height: 50px;
@@ -89,11 +93,12 @@ export default {
   display: block;
 }
 .detail > p {
-  width: 100%;
+  width: 730px;
   padding: 20px 0 20px 20px;
   background: white;
   color: red;
   font-weight: bold;
+  overflow: hidden;
 }
 .detail > p > span {
   font-weight: bold;

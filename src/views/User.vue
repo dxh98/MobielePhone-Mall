@@ -5,9 +5,9 @@
       <div class="user">
         <img :src="avatar" alt="" />
         <a href="#"
-          ><p>{{ nickName }}</p>
-          <van-icon name="edit"
-        /></a>
+          ><p>昵称:{{ nickName }}</p>
+          <p>账号:{{ username }}</p>
+        </a>
         <router-link :to="{ name: 'News' }">
           <van-icon class="icon" name="chat-o" dot />
         </router-link>
@@ -15,21 +15,23 @@
 
       <div class="dingdan">
         <p>我的订单</p>
-        <router-link :to="{ name: 'Order' }"><p>查看全部订单 ></p></router-link>
+        <router-link :to="{ name: 'Order', query: { activeId: 0 } }"
+          ><p>查看全部订单 ></p></router-link
+        >
       </div>
 
       <div class="ddnav">
         <van-grid :column-num="5" style="justify-content: space-between;">
-          <router-link :to="{ name: 'Order' }"
+          <router-link :to="{ name: 'Order', query: { activeId: 1 } }"
             ><van-grid-item icon="paid" text="待付款"
           /></router-link>
-          <router-link :to="{ name: 'Order' }"
+          <router-link :to="{ name: 'Order', query: { activeId: 2 } }"
             ><van-grid-item icon="tosend" text="代发货"
           /></router-link>
-          <router-link :to="{ name: 'Order' }"
+          <router-link :to="{ name: 'Order', query: { activeId: 3 } }"
             ><van-grid-item icon="logistics" text="待收货"
           /></router-link>
-          <router-link :to="{ name: 'Order' }"
+          <router-link :to="{ name: 'Order', query: { activeId: 4 } }"
             ><van-grid-item icon="records" text="待评价"
           /></router-link>
           <router-link :to="{ name: 'Refund' }"
@@ -37,14 +39,14 @@
           /></router-link>
         </van-grid>
       </div>
-      <div class="nav1">
+      <router-link class="nav1" :to="{ name: 'Address' }">
         <p>地址管理</p>
         <p>></p>
-      </div>
-      <div class="nav2">
+      </router-link>
+      <router-link class="nav2" :to="{ name: 'Collect' }">
         <p>我的收藏</p>
         <p>></p>
-      </div>
+      </router-link>
       <router-link class="nav3" :to="{ name: 'Help' }">
         <p>帮助中心</p>
         <p>></p>
@@ -72,7 +74,8 @@ export default {
   data() {
     return {
       nickName:'',
-      avatar:''
+      avatar:'',
+      username:''
     };
   },
   components: {},
@@ -90,10 +93,9 @@ export default {
       //  console.log(res)
        this.nickName = res.data.nickName
        this.avatar = res.data.avatar
+       this.username = res.data.userName
 
      })
-    //  .then((res)=>console.log(data))
-    //  .then((res)=>console.log(err))
    }
   },
   created(){
@@ -106,7 +108,7 @@ export default {
 .top {
   width: 100%;
   height: 20%;
-  background-color: rgba(93, 175, 225, 100);
+  background-color: #f51609;
 }
 .bottom {
   width: 100%;
@@ -131,9 +133,9 @@ export default {
   margin-left: 0.4rem;
 }
 .user p {
-  float: left;
+  /* float: left; */
   margin-left: 1rem;
-  margin-bottom: 4rem;
+  /* margin-bottom: 4rem; */
 }
 .user .icon {
   position: absolute;
@@ -170,6 +172,7 @@ export default {
 
 a {
   justify-content: space-between;
+  color: black;
 }
 
 .nav1,
@@ -210,10 +213,6 @@ a {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  background-color: #ccc;
-  padding: 1rem 0;
-  border-bottom: 0.01rem solid #999;
-  box-shadow: 0px 6px 7px #333;
-  margin: 0 1rem;
+  background-color: #f51609;
 }
 </style>
