@@ -37,7 +37,7 @@ export default {
         username: "",
         password: "",
         avatar:'',
-        nickName:''
+        nickName:'',
       },
       imgSrc: require("@/assets/icons/avatars.png")
     };
