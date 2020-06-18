@@ -14,42 +14,48 @@
     </div>
     <!-- 商品分页 -->
     <van-sticky>
-      <van-dropdown-menu>
+      <van-dropdown-menu class="menu">
         <van-dropdown-item v-model="value1" :options="option1" />
-        <van-dropdown-item v-model="value2" :options="option2" />
+        <van-dropdown-item v-model="value2" :options="option2" @change="Px" />
       </van-dropdown-menu>
     </van-sticky>
 
     <!-- 商品 -->
     <div class="content">
-      <HAH :Pd="pd" v-show="isShow"></HAH>
-      <HAH2 :Pd="pd" v-show="!isShow"></HAH2>
+      <van-pull-refresh v-model="isLoading" @refresh="onRefresh" success-text="刷新成功">
+        <HAH :Pd="pd" v-show="isShow"></HAH>
+        <HAH2 :Pd="pd" v-show="!isShow"></HAH2>
+      </van-pull-refresh>
     </div>
   </div>
 </template>
 <script>
+import { Toast } from "vant";
 import HAH from "./hah";
 import HAH2 from "./hah2";
 import { Products } from "@/service/Goods.js";
 export default {
   data() {
     return {
+      count: 0,
+      isLoading: false,
       isShow: true,
       HS: true,
       allProducts: "",
       value: "",
+      priceUP: "",
       pd: "",
+      pd1: "",
       value1: 0,
       value2: "a",
       option1: [
-        { text: "全部商品", value: 0 },
-        { text: "新款商品", value: 1 },
-        { text: "活动商品", value: 2 }
+        { text: "综合推荐", value: 0 },
+        { text: "评论从高到低", value: 1 }
       ],
       option2: [
-        { text: "默认排序", value: "a" },
-        { text: "好评排序", value: "b" },
-        { text: "销量排序", value: "c" }
+        { text: "价格", value: "a" },
+        { text: "价格高到低", value: "b" },
+        { text: "价格低到高", value: "c" }
       ]
     };
   },
@@ -58,6 +64,30 @@ export default {
     HAH2
   },
   methods: {
+    // 排序
+    Px(value2 = "a") {
+      if (value2 === "a") {
+        // console.log(value2);
+        this.pd = this.pd1;
+      } else if (value2 === "b") {
+        this.pd = this.pd1.sort((a, b) => {
+          return b.price - a.price;
+        });
+      } else {
+        this.pd = this.pd1.sort((a, b) => {
+          return a.price - b.price;
+        });
+      }
+    },
+    // 下拉刷新
+    onRefresh() {
+      setTimeout(() => {
+        // Toast("刷新成功");
+        this.isLoading = false;
+        this.loading(this.$route.query.listId);
+        this.count++;
+      }, 1000);
+    },
     //切换 列表样式
     op() {
       this.HS = !this.HS;
@@ -77,14 +107,16 @@ export default {
           arrP.push(arr[i]);
         }
       }
-      this.pd = arrP;
+      this.pd1 = arrP;
     }
   },
   async created() {
     const res = await Products(50, 1);
     this.allProducts = res.data.products;
     this.loading(this.$route.query.listId);
-  }
+    this.Px();
+  },
+  watch: {}
 };
 </script>
 <style scoped>
@@ -99,4 +131,10 @@ export default {
 .search {
   flex: 1;
 }
+/* .menu {
+  background-color: #fff;
+  display: flex;
+  justify-content: space-;
+  align-items: center;
+} */
 </style>
