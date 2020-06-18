@@ -1,12 +1,8 @@
 <template>
   <div class="sort">
-<<<<<<< HEAD
     <van-sticky>
       <van-search v-model="value" shape="round" disabled placeholder="请输入搜索关键词" @click="search()" />
     </van-sticky>
-=======
-    <van-search @click="searched" v-model="value" shape="round" placeholder="请输入搜索关键词" />
->>>>>>> 6796d96b6bb244ae3aef58decfe9f00d0f5bb176
     <div class="conter">
       <!-- 侧边栏 -->
       <div class="left">
@@ -45,15 +41,10 @@ export default {
     };
   },
   components: {
-
     products
   },
   async created() {
-<<<<<<< HEAD
     const res = await Products(99, 1);
-=======
-    const res = await Products(88);
->>>>>>> 6796d96b6bb244ae3aef58decfe9f00d0f5bb176
     this.allProducts = res.data.products;
     this.sort();
     this.loading();
@@ -98,23 +89,9 @@ export default {
     },
     kind(Pid) {
       this.loading(Pid);
-    },
-    // 加入购物车
-<<<<<<< HEAD
-  }
-=======
-    searched() {
-      this.$router.push({ name: "sousuo" });
     }
-  },
-  async created() {
-    const res = await Products(50);
-    this.allProducts = res.data.products;
-    this.sort();
-    this.loading();
-  },
-  watch: {}
->>>>>>> 6796d96b6bb244ae3aef58decfe9f00d0f5bb176
+    // 加入购物车
+  }
 };
 </script>
 
@@ -126,13 +103,8 @@ export default {
 .conter {
   flex: 1;
   display: flex;
-<<<<<<< HEAD
   margin-top: 10px;
   /* padding-top: 250px; */
-=======
-  flex-direction: row;
-  margin-top: 0.5rem;
->>>>>>> 6796d96b6bb244ae3aef58decfe9f00d0f5bb176
 }
 .left {
   flex: 1;
