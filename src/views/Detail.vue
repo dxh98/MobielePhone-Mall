@@ -54,7 +54,10 @@ export default {
   components: {},
   methods: {
     onClickIcon() {
-      Toast("点击图标");
+      this.$router.push({
+        name: "Cart"
+      });
+      // Toast("点击图标");
     },
     onClickButton() {
       Toast("点击按钮");

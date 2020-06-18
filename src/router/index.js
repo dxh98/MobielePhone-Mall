@@ -139,6 +139,15 @@ const routes = [
       hideNav: true,
     },
   },
+  // 修改购物车地址
+  {
+    path: "/reviseaddress",
+    name: "RevisrAddress",
+    component: () => import("../views/AddressList/Reviseaddress"),
+    meta: {
+      hideNav: true,
+    },
+  },
   {
     path: "/newadd",
     name: "Newadd",
