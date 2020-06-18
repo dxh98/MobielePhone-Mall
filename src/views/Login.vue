@@ -5,18 +5,8 @@
     <div class="login">
       <h1>PhoneGo用户登录</h1>
       <img class="logo" src="@/assets/icons/Logo.png" alt />
-      <input
-        v-model="LoginForm.username"
-        type="text"
-        class="username"
-        placeholder="请输入账号"
-      />
-      <input
-        v-model="LoginForm.password"
-        type="password"
-        class="password"
-        placeholder="请输入密码"
-      />
+      <input v-model="LoginForm.username" type="text" class="username" placeholder="请输入账号" />
+      <input v-model="LoginForm.password" type="password" class="password" placeholder="请输入密码" />
       <button @click="Login">登录</button>
       <a href="#" @click="tabpage">没有账号，我要注册</a>
     </div>
@@ -56,7 +46,7 @@ export default {
       } else {
         post("/api/v1/auth/login", {
           userName: this.LoginForm.username,
-          password: this.LoginForm.password,
+          password: this.LoginForm.password
         }).then(res => {
           if (res.data.code == "success") {
             setToken(res.data.token);
@@ -67,8 +57,7 @@ export default {
               })
               .catch(() => {});
           } else {
-            this.text = "密码错误,请重新输入!!";
-            this.show = true;
+            alert(res.data.message);
           }
         });
       }
@@ -133,16 +122,5 @@ export default {
   padding-left: 400px;
   font-size: 27px;
   color: rgba(0, 0, 0, 0.6);
-}
-.msg {
-  text-align: center;
-  color: red;
-  width: 10rem;
-  font-size: 16px;
-  display: flex;
-  line-height: 4rem;
-  justify-content: center;
-  height: 4rem;
-  border-radius: 10px;
 }
 </style>

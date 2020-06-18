@@ -97,60 +97,50 @@ export default {
   data() {
     return {
       images: [
-        "https://m.360buyimg.com/mobilecms/s700x280_jfs/t1/112923/23/10175/195622/5ee74c46Ec9d71a0e/3d171b7bf86815e3.jpg!q70.jpg.dpg",
-        "https://imgcps.jd.com/ling4/100004323294/5omL5py66LSt5a6e5oOg/5aSH6LSn6LaF5YC8/p-5c122d3d82acdd181d18292c/4ab10a22/cr_1125x445_0_171/s1125x690/q70.jpg",
-        "https://imgcps.jd.com/ling4/100004323294/5p6B5a6i5b-F5aSH/6L-95rGC5p6B6Ie055Sf5rS7/p-5d91a4f642dd5b7c7d52cbc8/2eac115e/cr/s1125x690/q70.jpg",
-        "https://m.360buyimg.com/mobilecms/s700x280_jfs/t1/149442/5/354/189632/5ee0d26cE753c892c/dbbf3fd6716a78e2.jpg!cr_1125x445_0_171!q70.jpg.dpg"
+        require("@/assets/banner1.jpg"),
+        require("@/assets/banner2.jpg"),
+        require("@/assets/banner3.jpg"),
+        require("@/assets/banner4.jpg")
       ],
       icons: [
         {
-          url:
-            "https://m.360buyimg.com/mobilecms/s120x120_jfs/t1/139726/6/693/6411/5ee6de22E7c61a6c1/4867e73739d91c58.png.webp",
+          url: require("@/assets/icon1.png"),
           text: "性价比"
         },
         {
-          url:
-            "https://m.360buyimg.com/mobilecms/s120x120_jfs/t1/136744/4/2242/5766/5ee6de26E586b90de/f4059b653516adda.png.webp",
+          url: require("@/assets/icon2.jpg"),
           text: "性能强"
         },
         {
-          url:
-            "https://m.360buyimg.com/mobilecms/s120x120_jfs/t1/146378/21/730/6116/5ee6de2aE3ada7856/a5092102b03aec0d.png.webp",
+          url: require("@/assets/icon3.jpg"),
           text: "音质美"
         },
         {
-          url:
-            "https:////m.360buyimg.com/mobilecms/s120x120_jfs/t1/111531/5/10210/6261/5ee6de2eE3c3de6ec/d0147a0ae1862ad7.png.webp",
+          url: require("@/assets/icon4.jpg"),
           text: "爱拍照"
         },
         {
-          url:
-            "https://m.360buyimg.com/mobilecms/s120x120_jfs/t1/131252/2/2265/6004/5ee6de37E8f96be14/544d5f586413ef14.png.webp",
+          url: require("@/assets/icon5.jpg"),
           text: "售后好"
         },
         {
-          url:
-            "https://m.360buyimg.com/mobilecms/s120x120_jfs/t1/115186/38/10174/5887/5ee6de3cEee1a71a1/887090da02570465.png.webp",
+          url: require("@/assets/icon6.jpg"),
           text: "价格低"
         },
         {
-          url:
-            "https://m.360buyimg.com/mobilecms/s120x120_jfs/t1/146401/17/702/6481/5ee6de41Ece4a5b4b/122924477363b145.png.webp",
+          url: require("@/assets/icon7.jpg"),
           text: "可分期"
         },
         {
-          url:
-            "https://m.360buyimg.com/mobilecms/s120x120_jfs/t1/122137/9/4957/6105/5ee6de45E08719845/c59c6d3f7527a97c.png.webp",
+          url: require("@/assets/icon8.jpg"),
           text: "领券"
         },
         {
-          url:
-            "https://m.360buyimg.com/mobilecms/s120x120_jfs/t1/129883/26/2314/6235/5ee6de4aEee55042e/56b1db7381386a95.png.webp",
+          url: require("@/assets/icon9.jpg"),
           text: "赚钱"
         },
         {
-          url:
-            "https://m.360buyimg.com/mobilecms/s120x120_jfs/t1/149526/40/723/5793/5ee6de52E3c744f46/5c0a32cb5db908f7.png.webp",
+          url: require("@/assets/icon10.jpg"),
           text: "好机推荐"
         }
       ],
