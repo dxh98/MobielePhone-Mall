@@ -1,7 +1,8 @@
 <template>
   <div class="pr">
     <div class="top">
-      <p>{{this.$route.params.list}}</p>
+      <!-- {Pd[0].productCategory.descriptions? Pd[0].productCategory.descriptions:' ' -->
+      <p>{{name}}</p>
       <span @click="btn">查看更多>></span>
     </div>
     <van-card
@@ -13,6 +14,7 @@
       currency="￥"
       :origin-price="item.price + 20"
       :thumb="item.coverImg"
+      @click-thumb="detail(item._id)"
     >
       <template #bottom>
         <div class="lookIcon">
@@ -28,25 +30,68 @@
   </div>
 </template>
 <script>
-import { Products, addCart } from "../service/Goods";
+// import { eventBus } from "../router/firstChild/evevtBus";
+import { Toast } from "vant";
+import { addProduct } from "../service/Cart";
+import { Products } from "../service/Goods";
 export default {
+  name: "products",
   data() {
     return {
-      prod: ""
+      prod: "",
+      name: "",
+      listName: "",
+      listId: ""
+      // allProducts: ""
+      // Pid: ""
     };
   },
   props: ["Pd"],
   methods: {
-    btn() {},
+    // 商品详请
+    detail(id) {
+      this.$router.push({
+        name: "Detail",
+        query: {
+          id
+        }
+      });
+    },
+    // 跳转更多
+    btn() {
+      this.$router.push({
+        name: "Onkind",
+        query: {
+          // listName: this.listName,
+          listId: this.listId
+          // listName: this.$route.params.list,
+          // listId: this.$route.params.id
+        }
+      });
+    },
     // 加入购物车
     addCart(id) {
-      addCart(id, 1).then(res => {
-        alert(res.data.message);
+      console.log(id);
+      addProduct(id, 1).then(res => {
+        console.log(res);
+        Toast.success("加入购物车成功");
       });
     }
   },
   computed: {},
-  watch: {}
+  watch: {
+    Pd: {
+      handler(newVal, oldVel) {
+        console.log("2", newVal);
+        if (newVal) {
+          this.name = newVal[0].productCategory.descriptions;
+
+          this.listId = newVal[0].productCategory._id;
+        }
+      },
+      deep: true
+    }
+  }
 };
 </script>
 <style scoped>

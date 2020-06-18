@@ -1,17 +1,21 @@
 <template>
   <div class="sort">
-    <van-search @click="searched" v-model="value" shape="round" placeholder="请输入搜索关键词" />
+    <van-sticky>
+      <van-search v-model="value" shape="round" disabled placeholder="请输入搜索关键词" @click="search()" />
+    </van-sticky>
     <div class="conter">
       <!-- 侧边栏 -->
-      <van-sidebar v-model="activeKey" class="sd">
-        <van-sidebar-item
-          v-for="item in productList"
-          :key="item.List_id"
-          :title="item.listName"
-          :to="{name:'Products',params:{id:item.List_id,list:item.listName}}"
-          @click="kind(item.List_id)"
-        />
-      </van-sidebar>
+      <div class="left">
+        <van-sidebar v-model="activeKey" class="sd">
+          <van-sidebar-item
+            v-for="item in productList"
+            :key="item.List_id"
+            :title="item.listName"
+            :to="{name:'Products',params:{id:item.List_id,list:item.listName}}"
+            @click="kind(item.List_id)"
+          />
+        </van-sidebar>
+      </div>
       <!-- 右边内容 -->
       <div class="list">
         <products :Pd="pd"></products>
@@ -37,16 +41,21 @@ export default {
     };
   },
   components: {
-    // Sd,
     products
   },
   async created() {
-    const res = await Products(88);
+    const res = await Products(99, 1);
     this.allProducts = res.data.products;
     this.sort();
     this.loading();
   },
   methods: {
+    // 搜
+    search() {
+      this.$router.push({
+        name: "sousuo"
+      });
+    },
     sort() {
       //获取所有商品
       // 然后遍历属性 形成新的商品列表对象 保存分类id
@@ -67,6 +76,7 @@ export default {
       }, []);
       this.productList = arr;
     },
+    // 加载类商品
     loading(Pid = this.productListId) {
       let arrP = [];
       const arr = this.allProducts;
@@ -79,19 +89,9 @@ export default {
     },
     kind(Pid) {
       this.loading(Pid);
-    },
-    // 加入购物车
-    searched() {
-      this.$router.push({ name: "sousuo" });
     }
-  },
-  async created() {
-    const res = await Products(50);
-    this.allProducts = res.data.products;
-    this.sort();
-    this.loading();
-  },
-  watch: {}
+    // 加入购物车
+  }
 };
 </script>
 
@@ -99,17 +99,22 @@ export default {
 .sort {
   background-color: rgb(246, 246, 246);
 }
-.conter {
-  display: flex;
-  flex-direction: row;
-  margin-top: 0.5rem;
-}
 
-.list {
-  width: 100%;
-  overflow: auto;
+.conter {
+  flex: 1;
+  display: flex;
+  margin-top: 10px;
+  /* padding-top: 250px; */
 }
-.sd {
-  width: 250px;
+.left {
+  flex: 1;
 }
+.left .sd {
+  width: 220px;
+  height: 100%;
+  overflow-y: auto;
+}
+/* .list {
+  overflow-y: auto;
+} */
 </style>
