@@ -34,12 +34,13 @@ export default {
       this.$router.go(-1);
     },
     async onSave(content) {
+      console.log(content);
       const res = await Addresses({
         receiver: content.name, //   收货人姓名
         mobile: content.tel, // 手机号
         regions: content.province + content.city + content.county, //    地区信息(河南省-郑州市-二七区)
         address: content.addressDetail, //   详细地址(航海路1290号)
-        idDefault: content.isDefault //是否默认(true/false)
+        isDefault: content.isDefault //是否默认(true/false)
       });
 
       console.log(res, content);

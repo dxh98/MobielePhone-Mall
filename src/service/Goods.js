@@ -1,4 +1,4 @@
-import { get, post, del } from "../utils/request";
+import { get, post, del, put } from "../utils/request";
 
 export function Products(per = 10, page = 1) {
   return get("/api/v1/products", {
@@ -37,10 +37,18 @@ export function getAddresses() {
 
 // 获取单条收货地址
 export function oneAddresses(id) {
-  return get("/api/v1/addresses" + id);
+  return get("/api/v1/addresses/" + id);
 }
 
 // 收货地址新增
 export function Addresses(data) {
   return post("/api/v1/addresses", data);
+}
+// 修改收货地址
+export function reviseAddresses(id, data) {
+  return put("/api/v1/addresses/" + id, data);
+}
+// 删除收货地址
+export function deleteAddresses(id) {
+  return del("/api/v1/addresses/" + id);
 }
