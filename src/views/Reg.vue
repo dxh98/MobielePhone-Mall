@@ -18,7 +18,7 @@
         type="password"
         placeholder="请输入密码"
       />
-      <input type="password" placeholder="确认密码" />
+      <input v-model="confirmpassword" type="password" placeholder="确认密码" />
       <button @click="Reg">注册</button>
 
       <a href="#" @click="tabpage">已有账号，我要登录</a>
@@ -39,6 +39,7 @@ export default {
         avatar:'',
         nickName:'',
       },
+      confirmpassword:'',
       imgSrc: require("@/assets/icons/avatars.png")
     };
   },
@@ -58,20 +59,24 @@ export default {
       if (this.RegForm.username == "" || this.RegForm.password == "") {
         alert("账号密码不能为空");
       } else {
-        // console.log(this.RegForm.username,this.RegForm.password)
-        post("/api/v1/auth/reg", {
-          userName: this.RegForm.username,
-          password: this.RegForm.password,
-          avatar: this.RegForm.avatar,
-          nickName: this.RegForm.nickName
-        }).then(res => {
-          if (res.data.code == "success") {
-            alert("用户注册成功");
-            this.$router.push({
-              name: "Login"
-            });
-          }
-        });
+        if(this.RegForm.password == this.confirmpassword){
+          post("/api/v1/auth/reg", {
+            userName: this.RegForm.username,
+            password: this.RegForm.password,
+            avatar: this.RegForm.avatar,
+            nickName: this.RegForm.nickName
+          }).then(res => {
+            if (res.data.code == "success") {
+              alert("用户注册成功");
+              this.$router.push({
+                name: "Login"
+              });
+            }
+          });
+        }else{
+          alert("密码不一致")
+        }
+
       }
     },
     selImgHandle() {
