@@ -71,9 +71,7 @@ export default {
     },
     // 加入购物车
     addCart(id) {
-      console.log(id);
       addProduct(id, 1).then(res => {
-        console.log(res);
         Toast.success("加入购物车成功");
       });
     }
@@ -82,7 +80,6 @@ export default {
   watch: {
     Pd: {
       handler(newVal, oldVel) {
-        console.log("2", newVal);
         if (newVal) {
           this.name = newVal[0].productCategory.descriptions;
 
