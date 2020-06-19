@@ -2,7 +2,13 @@
   <div class="home">
     <!-- 搜索框，点击跳转搜索页面 -->
     <van-sticky>
-      <van-search shape="round" background="red" disabled placeholder="请输入搜索关键词" @click="searched" />
+      <van-search
+        shape="round"
+        background="white"
+        disabled
+        placeholder="请输入搜索关键词"
+        @click="searched"
+      />
     </van-sticky>
 
     <!-- 轮播图 -->
@@ -17,7 +23,12 @@
     <!-- 功能分类导航 -->
     <div class="sortBar">
       <van-grid :column-num="5">
-        <van-grid-item v-for="item in icons" :key="item.index" icon="photo-o" text="文字">
+        <van-grid-item
+          v-for="item in icons"
+          :key="item.index"
+          icon="photo-o"
+          text="文字"
+        >
           <img class="sortIcons" :src="item.url" />
           <h1 class="sortText">{{ item.text }}</h1>
         </van-grid-item>
@@ -64,7 +75,10 @@
     </div>
 
     <!-- 好机推荐 -->
-    <van-divider :style="{ color: '#1989fa', borderColor: '#1989fa', padding: '0 16px' }">为你推荐</van-divider>
+    <van-divider
+      :style="{ color: '#1989fa', borderColor: '#1989fa', padding: '0 16px' }"
+      >为你推荐</van-divider
+    >
     <div class="goodsList">
       <van-grid :column-num="2" :gutter="6">
         <van-grid-item
@@ -100,64 +114,64 @@ export default {
         require("@/assets/banner1.jpg"),
         require("@/assets/banner2.jpg"),
         require("@/assets/banner3.jpg"),
-        require("@/assets/banner4.jpg")
+        require("@/assets/banner4.jpg"),
       ],
       icons: [
         {
           url: require("@/assets/icon1.png"),
-          text: "性价比"
+          text: "性价比",
         },
         {
           url: require("@/assets/icon2.jpg"),
-          text: "性能强"
+          text: "性能强",
         },
         {
           url: require("@/assets/icon3.jpg"),
-          text: "音质美"
+          text: "音质美",
         },
         {
           url: require("@/assets/icon4.jpg"),
-          text: "爱拍照"
+          text: "爱拍照",
         },
         {
           url: require("@/assets/icon5.jpg"),
-          text: "售后好"
+          text: "售后好",
         },
         {
           url: require("@/assets/icon6.jpg"),
-          text: "价格低"
+          text: "价格低",
         },
         {
           url: require("@/assets/icon7.jpg"),
-          text: "可分期"
+          text: "可分期",
         },
         {
           url: require("@/assets/icon8.jpg"),
-          text: "领券"
+          text: "领券",
         },
         {
           url: require("@/assets/icon9.jpg"),
-          text: "赚钱"
+          text: "赚钱",
         },
         {
           url: require("@/assets/icon10.jpg"),
-          text: "好机推荐"
-        }
+          text: "好机推荐",
+        },
       ],
       products: [],
       spikeProducts: [],
-      time: 30 * 60 * 60 * 1000
+      time: 30 * 60 * 60 * 1000,
     };
   },
   filters: {
     spliceStr(str) {
       return str.length > 26 ? str.substr(0, 28) + "..." : str;
-    }
+    },
   },
   components: {},
   methods: {
     loadData() {
-      Products(50, 1).then(res => {
+      Products(50, 1).then((res) => {
         this.products = res.data.products;
         let a = Math.floor(Math.random() * 10) + 1;
         this.spikeProducts.push(this.products.slice(a, a + 4));
@@ -165,11 +179,11 @@ export default {
     },
     searched() {
       this.$router.push({ name: "sousuo" });
-    }
+    },
   },
   created() {
     this.loadData();
-  }
+  },
 };
 </script>
 

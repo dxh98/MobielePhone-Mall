@@ -11,12 +11,12 @@ import Nav from "./components/Nav";
 export default {
   data() {
     return {
-      hideNav: false //默认是显示的
+      hideNav: false, //默认是显示的
     };
   },
   components: {
     Nav,
-    products
+    products,
   },
   watch: {
     $route() {
@@ -25,8 +25,8 @@ export default {
       } else {
         this.hideNav = false;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -35,7 +35,6 @@ body,
 html {
   width: 100%;
   height: 100%;
-  /* background-color: aquamarine; */
 }
 #app {
   display: flex;
@@ -44,5 +43,9 @@ html {
 .main {
   flex: 1;
   overflow: auto;
+}
+.main::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
 }
 </style>
