@@ -107,7 +107,7 @@ export default {
   width: 1.3rem;
   position: fixed;
   left: 18px;
-  top: 13px;
+  top: 28px;
 }
 .reg {
   display: flex;
