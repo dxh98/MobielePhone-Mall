@@ -35,7 +35,8 @@ export default {
   name: "",
   data() {
     return {
-      prod: ""
+      prod: "",
+      PD: ""
       // allProducts: ""
       // Pid: ""
     };
@@ -67,6 +68,15 @@ export default {
       return str.length > 26 ? str.substr(0, 28) + "..." : str;
     }
   }
+  // watch: {
+  //   Pd: {
+  //     handler(newVal) {
+  //       // console.log("2", newVal);
+  //       this.Pd = newVal;
+  //     },
+  //     deep: true
+  //   }
+  // }
 };
 </script>
 <style scoped>
