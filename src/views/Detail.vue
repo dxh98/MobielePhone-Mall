@@ -30,7 +30,7 @@
     </h1>
     <!-- 底部操作栏 -->
     <van-goods-action class="operationBar">
-      <van-goods-action-icon icon="chat-o" text="客服" @click="onClickIcon" />
+      <van-goods-action-icon icon="chat-o" text="客服" />
       <van-goods-action-icon icon="cart-o" text="购物车" @click="onClickIcon" />
       <van-goods-action-button color="#be99ff" type="warning" text="加入购物车" @click="addcart" />
       <!-- <van-popup position="bottom" :style="{ height: '30%' }" v-model="show">

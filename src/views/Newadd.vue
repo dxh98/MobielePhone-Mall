@@ -34,7 +34,6 @@ export default {
       this.$router.go(-1);
     },
     async onSave(content) {
-      console.log(content);
       const res = await Addresses({
         receiver: content.name, //   收货人姓名
         mobile: content.tel, // 手机号
@@ -42,8 +41,6 @@ export default {
         address: content.addressDetail, //   详细地址(航海路1290号)
         isDefault: content.isDefault //是否默认(true/false)
       });
-
-      console.log(res, content);
 
       Toast("保存成功");
       this.$router.push({

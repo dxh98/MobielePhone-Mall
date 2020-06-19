@@ -29,7 +29,6 @@ export default {
       this.$router.push({ name: "Newadd" });
     },
     onEdit(item) {
-      // console.log(item);
       this.$router.push({
         name: "RevisrAddress",
         query: {
@@ -42,11 +41,8 @@ export default {
   async created() {
     const res = await getAddresses();
     let arr = res.data.addresses;
-    console.log(arr);
     let newlist = [];
     for (let i = 0; i < arr.length; i++) {
-      console.log(arr[i].isDefault);
-
       let newArr = {
         id: arr[i]._id,
         name: arr[i].receiver,

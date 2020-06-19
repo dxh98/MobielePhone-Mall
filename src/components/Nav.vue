@@ -66,6 +66,9 @@ export default {
       if (this.$route.path == "/") {
         this.isSel = 0;
       }
+      if (this.$route.path == "/cart") {
+        this.isSel = 2;
+      }
     }
   },
   components: {},

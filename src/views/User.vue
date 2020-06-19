@@ -51,7 +51,7 @@
           <router-link :to="{ name: 'Order', query: { activeId: 2 } }">
             <van-grid-item
               icon="https://ae01.alicdn.com/kf/Ha9a453a8b3cb42e88c6871cd609b23c7k.jpg"
-              text="代发货"
+              text="待发货"
             />
           </router-link>
           <router-link :to="{ name: 'Order', query: { activeId: 3 } }">
@@ -142,7 +142,6 @@ export default {
           authorization: "beaer" + getToken()
         }
       }).then(res => {
-        //  console.log(res)
         this.nickName = res.data.nickName;
         this.avatar = res.data.avatar;
         this.username = res.data.userName;

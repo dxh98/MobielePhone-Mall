@@ -67,7 +67,6 @@ export default {
     // 排序
     Px(value2 = "a") {
       if (value2 === "a") {
-        // console.log(value2);
         this.pd = this.pd1;
       } else if (value2 === "b") {
         this.pd = this.pd1.sort((a, b) => {
@@ -82,7 +81,6 @@ export default {
     // 下拉刷新
     onRefresh() {
       setTimeout(() => {
-        // Toast("刷新成功");
         this.isLoading = false;
         this.loading(this.$route.query.listId);
         this.count++;
@@ -100,7 +98,6 @@ export default {
     // 加载同类商品
     loading(Pid) {
       let arrP = [];
-      // console.log(Pid);
       const arr = this.allProducts;
       for (let i = 0; i < arr.length; i++) {
         if (arr[i].productCategory._id == Pid) {

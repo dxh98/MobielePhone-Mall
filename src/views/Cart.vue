@@ -158,10 +158,7 @@ export default {
     },
     // 删除购物车商品
     delCartProduct(id) {
-      console.log("删除此商品", id);
-      delCartOne(id).then(res => {
-        console.log(res);
-      });
+      delCartOne(id).then(res => {});
       getCartList().then(res => {
         this.products = [];
         res.data.map((item, index) => {
@@ -169,19 +166,12 @@ export default {
         });
       });
     }
-    // delOne() {
-    //   delCartOne().then(res => {
-    //     console.log(res);
-    //   });
-    // }
   },
   async created() {
     const res = await getCartList();
-    // this.products = res.data;
     res.data.map((item, index) => {
       this.products.push(Object.assign(item, { isSel: false }));
     });
-    // console.log(this.products);
     // 计算总价
     this.calcTotalPrice();
     // 随机获取为你推荐列表

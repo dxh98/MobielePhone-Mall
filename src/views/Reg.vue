@@ -3,21 +3,12 @@
     <img @click="Goback" class="goback" src="@/assets/icons/goback.png" />
     <div class="reg">
       <h1>PhoneGo用户注册</h1>
-      <input
-        @change="fileSelected"
-        type="file"
-        ref="file"
-        style="display:none"
-      />
+      <input @change="fileSelected" type="file" ref="file" style="display:none" />
       <img @click="selImgHandle" :src="imgSrc" class="avatars" alt />
       <p class="point">请选择头像</p>
       <input v-model="RegForm.username" type="text" placeholder="请输入账号" />
       <input v-model="RegForm.nickName" type="text" placeholder="请输入昵称" />
-      <input
-        v-model="RegForm.password"
-        type="password"
-        placeholder="请输入密码"
-      />
+      <input v-model="RegForm.password" type="password" placeholder="请输入密码" />
       <input v-model="confirmpassword" type="password" placeholder="确认密码" />
       <button @click="Reg">注册</button>
 
@@ -36,10 +27,10 @@ export default {
       RegForm: {
         username: "",
         password: "",
-        avatar:'',
-        nickName:'',
+        avatar: "",
+        nickName: ""
       },
-      confirmpassword:'',
+      confirmpassword: "",
       imgSrc: require("@/assets/icons/avatars.png")
     };
   },
@@ -59,7 +50,7 @@ export default {
       if (this.RegForm.username == "" || this.RegForm.password == "") {
         alert("账号密码不能为空");
       } else {
-        if(this.RegForm.password == this.confirmpassword){
+        if (this.RegForm.password == this.confirmpassword) {
           post("/api/v1/auth/reg", {
             userName: this.RegForm.username,
             password: this.RegForm.password,
@@ -73,17 +64,15 @@ export default {
               });
             }
           });
-        }else{
-          alert("密码不一致")
+        } else {
+          alert("密码不一致");
         }
-
       }
     },
     selImgHandle() {
       this.$refs.file.click();
     },
     fileSelected(e) {
-      // console.log(e);
       const formData = new FormData();
       formData.append("file", e.target.files[0]); // 获取当前的图片信息
       post("/api/v1/common/file_upload", formData, {
@@ -91,11 +80,8 @@ export default {
           "Content-Type": "multipart/form-data"
         }
       }).then(res => {
-        // console.log(res);
         this.imgSrc = `http://106.14.70.106:3019` + res.data.info;
-        // console.log(this.imgSrc);
         this.RegForm.avatar = `http://106.14.70.106:3019` + res.data.info;
-        // console.log(this.RegForm.avatar)
       });
     }
   }

@@ -55,12 +55,9 @@ export default {
 
     // 加入购物车
     addCart(id) {
-      console.log(id);
       addProduct(id, 1).then(res => {
-        console.log(res);
         Toast.success("加入购物车成功");
       });
-      // console.log(res);
     }
   },
   filters: {
@@ -68,15 +65,6 @@ export default {
       return str.length > 26 ? str.substr(0, 28) + "..." : str;
     }
   }
-  // watch: {
-  //   Pd: {
-  //     handler(newVal) {
-  //       // console.log("2", newVal);
-  //       this.Pd = newVal;
-  //     },
-  //     deep: true
-  //   }
-  // }
 };
 </script>
 <style scoped>

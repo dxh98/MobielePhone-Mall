@@ -29,8 +29,6 @@ export default {
       this.$router.go(-1);
     },
     dis() {
-      console.log(this.str);
-      // console.log(this.str.length);
       if (this.str == "") {
         this.styleObj1.display = "none";
       } else {
@@ -42,12 +40,10 @@ export default {
           this.searchResult.push(this.list[i]);
         }
       }
-      console.log(this.searchResult);
     }
   },
   created() {
     axios.get("http://106.14.70.106:3019/api/v1/products").then(res => {
-      // console.log(res.data.products);
       this.list = res.data.products;
     });
   }

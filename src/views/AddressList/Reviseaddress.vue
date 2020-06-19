@@ -46,7 +46,6 @@ export default {
       this.$router.go(-1);
     },
     PPP(checked) {
-      // console.log(checked);
       this.record.isDefault = checked;
     },
     // 删除
@@ -68,16 +67,8 @@ export default {
   },
   async created() {
     const res = await oneAddresses(this.$route.query.id);
-    // console.log(res.data);
     const arr = res.data;
     this.record = res.data;
-    // this.record = {
-    //   receiver: arr.receiver, //    收货人姓名
-    //   mobile: arr.mobile, // 手机号
-    //   regions: arr.regions, //地区信息(河南省-郑州市-二七区)
-    //   address: arr.address, // 详细地址(航海路1290号)
-    //   idDefault: arr.idDefault //是否默认(true/false)
-    // };
   }
 };
 </script>

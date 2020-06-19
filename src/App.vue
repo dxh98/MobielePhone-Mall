@@ -20,7 +20,6 @@ export default {
   },
   watch: {
     $route() {
-      // console.log(this);
       if (this.$route.meta.hideNav) {
         this.hideNav = true;
       } else {
