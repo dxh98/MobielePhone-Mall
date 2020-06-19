@@ -1,13 +1,11 @@
 <template>
-  <div class="about">
+  <div class="refund">
     <van-nav-bar
-      title="关于我们"
+      title="退款售后"
       left-text="返回"
       left-arrow
       @click-left="onClickLeft"
     />
-    <p>关于介绍</p>
-    <p>客服:XXX-XXX-XXX</p>
   </div>
 </template>
 <script>

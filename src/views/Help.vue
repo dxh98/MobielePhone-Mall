@@ -1,7 +1,7 @@
 <template>
-  <div class="about">
+  <div class="help">
     <van-nav-bar
-      title="关于我们"
+      title="帮助中心"
       left-text="返回"
       left-arrow
       @click-left="onClickLeft"

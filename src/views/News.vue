@@ -1,13 +1,11 @@
 <template>
-  <div class="about">
+  <div class="news">
     <van-nav-bar
-      title="关于我们"
+      title="我的消息"
       left-text="返回"
       left-arrow
       @click-left="onClickLeft"
     />
-    <p>关于介绍</p>
-    <p>客服:XXX-XXX-XXX</p>
   </div>
 </template>
 <script>

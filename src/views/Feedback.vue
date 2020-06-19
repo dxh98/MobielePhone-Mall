@@ -1,7 +1,7 @@
 <template>
-  <div class="about">
+  <div class="feedback">
     <van-nav-bar
-      title="关于我们"
+      title="意见反馈"
       left-text="返回"
       left-arrow
       @click-left="onClickLeft"

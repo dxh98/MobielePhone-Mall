@@ -1,32 +1,48 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <router-view class="main"></router-view>
+    <Nav v-show="!hideNav" />
   </div>
 </template>
 
+<script>
+import products from "./views/products";
+import Nav from "./components/Nav";
+export default {
+  data() {
+    return {
+      hideNav: false //默认是显示的
+    };
+  },
+  components: {
+    Nav,
+    products
+  },
+  watch: {
+    $route() {
+      if (this.$route.meta.hideNav) {
+        this.hideNav = true;
+      } else {
+        this.hideNav = false;
+      }
+    }
+  }
+};
+</script>
+
 <style>
+body,
+html {
+  width: 100%;
+  height: 100%;
+  /* background-color: aquamarine; */
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  display: flex;
+  flex-direction: column;
 }
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+.main {
+  flex: 1;
+  overflow: auto;
 }
 </style>
