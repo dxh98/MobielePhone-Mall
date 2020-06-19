@@ -41,37 +41,32 @@
       </div>
       <!-- 订单状态卡片 -->
       <div class="ordercard">
-        <van-grid :column-num="5" :gutter="12">
-          <router-link :to="{ name: 'Order', query: { activeId: 1 } }">
-            <van-grid-item
-              icon="https://ae01.alicdn.com/kf/H81280b4d31014e7c82e138cc64be9100p.jpg"
-              text="待付款"
-            />
-          </router-link>
-          <router-link :to="{ name: 'Order', query: { activeId: 2 } }">
-            <van-grid-item
-              icon="https://ae01.alicdn.com/kf/Ha9a453a8b3cb42e88c6871cd609b23c7k.jpg"
-              text="待发货"
-            />
-          </router-link>
-          <router-link :to="{ name: 'Order', query: { activeId: 3 } }">
-            <van-grid-item
-              icon="https://ae01.alicdn.com/kf/Hc980e8402983460dafd7453b90584259p.jpg"
-              text="待收货"
-            />
-          </router-link>
-          <router-link :to="{ name: 'Order', query: { activeId: 4 } }">
-            <van-grid-item
-              icon="https://ae01.alicdn.com/kf/Hbd18f704264d4dd89760b59f366dfac3u.jpg"
-              text="待评价"
-            />
-          </router-link>
-          <router-link :to="{ name: 'Refund' }">
-            <van-grid-item
-              icon="https://ae01.alicdn.com/kf/H5d64c899ec484bbd9eec51e4e47431f3J.jpg"
-              text="退款/售后"
-            />
-          </router-link>
+        <van-grid :border="false" :column-num="5" :gutter="12">
+          <van-grid-item
+            :to="{ name: 'Order', query: { activeId: 1 } }"
+            icon="https://ae01.alicdn.com/kf/H81280b4d31014e7c82e138cc64be9100p.jpg"
+            text="待付款"
+          />
+          <van-grid-item
+            :to="{ name: 'Order', query: { activeId: 2 } }"
+            icon="https://ae01.alicdn.com/kf/Ha9a453a8b3cb42e88c6871cd609b23c7k.jpg"
+            text="待发货"
+          />
+          <van-grid-item
+            :to="{ name: 'Order', query: { activeId: 3 } }"
+            icon="https://ae01.alicdn.com/kf/Hc980e8402983460dafd7453b90584259p.jpg"
+            text="待收货"
+          />
+          <van-grid-item
+            :to="{ name: 'Order', query: { activeId: 4 } }"
+            icon="https://ae01.alicdn.com/kf/Hbd18f704264d4dd89760b59f366dfac3u.jpg"
+            text="待评价"
+          />
+          <van-grid-item
+            :to="{ name: 'Refund' }"
+            icon="https://ae01.alicdn.com/kf/H5d64c899ec484bbd9eec51e4e47431f3J.jpg"
+            text="售后台"
+          />
         </van-grid>
       </div>
     </div>
@@ -111,7 +106,9 @@
       </ul>
     </div>
     <!-- 退出登录按钮 -->
-    <van-button @click="logOut" round type="info" size="large" class="logOutBtn">退出登录</van-button>
+    <van-button @click="logOut" round type="info" size="large" class="logOutBtn"
+      >退出登录</van-button
+    >
   </div>
 </template>
 
